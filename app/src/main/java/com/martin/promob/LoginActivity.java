@@ -1,4 +1,3 @@
-
 package com.martin.promob;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity {
-    public static final String EXTRA_USERLOGIN = "com.example.myfirstapp.USERLOGIN";
+    public static final String EXTRA_USERLOGIN = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,5 +24,8 @@ public class LoginActivity extends AppCompatActivity {
         intent.putExtra(EXTRA_USERLOGIN, userLogin);
         startActivity(intent);
     }
+
+
+
 
 }
