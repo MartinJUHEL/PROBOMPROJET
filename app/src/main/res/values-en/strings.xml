@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">PROMOB</string>
-    <string name="edit_message">Enter a message</string>
+    <string name="edit_username">Enter your username</string>
     <string name="button_send">Send</string>
+    <string name="button_one_player">One Player</string>
+    <string name="button_multiplayer">Multiplayer</string>
+    <string name="button_setting_description">Setting button</string>
 </resources>
