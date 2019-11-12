@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">PROMOB</string>
-    <string name="edit_message">Enter a message</string>
-    <string name="button_send">Send</string>
+    <string name="edit_username">Entrer votre surnom</string>
+    <string name="button_send">Envoyer</string>
+    <string name="button_compet">Compétition</string>
+    <string name="button_training">Entrainement</string>
+    <string name="button_game1">Jeu 1</string>
+    <string name="button_game2">Jeu 2</string>
+    <string name="button_game3">Jeu 3</string>
+    <string name="button_game4">Jeu 4</string>
+    <string name="button_game5">Jeu 5</string>
+    <string name="button_game6">Jeu 6</string>
 </resources>
