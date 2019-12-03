@@ -64,6 +64,7 @@
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="@android:dimen/notification_large_icon_height"
         android:layout_marginTop="100dp"
+        android:onClick="OnclickQuizz"
         android:text="@string/button_game1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

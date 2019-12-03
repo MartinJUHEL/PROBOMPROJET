@@ -13,4 +13,8 @@
     <string name="button_game4">Jeu 4</string>
     <string name="button_game5">Jeu 5</string>
     <string name="button_game6">Jeu 6</string>
+    <string name="activity_game_question1">Question</string>
+    <string name="activity_game_question2">Question2</string>
+    <string name="activity_game_question3">Question3</string>
+
 </resources>

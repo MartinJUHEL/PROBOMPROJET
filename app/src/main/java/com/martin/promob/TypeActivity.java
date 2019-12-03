@@ -7,7 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import static com.martin.promob.LoginActivity.EXTRA_USER_LOGIN;
+
 public class TypeActivity extends AppCompatActivity {
+
+    String userLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +20,9 @@ public class TypeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String type = intent.getStringExtra(MainActivity.EXTRA_TYPE);
+
+        Intent intentLogin = getIntent();
+        userLogin = intentLogin.getStringExtra(EXTRA_USER_LOGIN);
 
         TextView textView = findViewById(R.id.textView);
         textView.setText("Mode "+ type);

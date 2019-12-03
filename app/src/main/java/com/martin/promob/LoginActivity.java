@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 public class LoginActivity extends Activity {
     public static final String EXTRA_USER_LOGIN = "com.martin.EXTRA_USER_LOGIN";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
