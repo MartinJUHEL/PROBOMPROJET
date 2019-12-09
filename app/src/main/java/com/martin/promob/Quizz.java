@@ -99,8 +99,6 @@ public class Quizz extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-        System.out.println("COUCOU "+v.getTag());
-
 
         int responseIndex = (int) v.getTag();
 

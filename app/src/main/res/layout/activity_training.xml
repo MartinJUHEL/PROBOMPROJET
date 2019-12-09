@@ -11,7 +11,8 @@
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="@android:dimen/notification_large_icon_width"
         android:layout_marginTop="36dp"
-        android:text="@string/button_game2"
+        android:onClick="OnclickMemory"
+        android:text="@string/button_memory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button9" />
@@ -65,7 +66,7 @@
         android:layout_height="@android:dimen/notification_large_icon_height"
         android:layout_marginTop="100dp"
         android:onClick="OnclickQuizz"
-        android:text="@string/button_game1"
+        android:text="@string/button_quizz"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

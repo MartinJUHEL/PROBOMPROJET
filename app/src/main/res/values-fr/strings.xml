@@ -17,4 +17,8 @@
     <string name="activity_game_question2">Question2</string>
     <string name="activity_game_question3">Question3</string>
 
+    <string name="memory_name">Memory</string>
+    <string name="button_classement">Classement</string>
+    <string name="button_memory">Mémorie</string>
+    <string name="button_quizz">Quizz</string>
 </resources>

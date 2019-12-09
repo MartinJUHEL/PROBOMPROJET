@@ -8,7 +8,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.martin.promob.model.User;
+
+
+
 public class LoginActivity extends Activity {
+
     public static final String EXTRA_USER_LOGIN = "com.martin.EXTRA_USER_LOGIN";
 
     @Override
