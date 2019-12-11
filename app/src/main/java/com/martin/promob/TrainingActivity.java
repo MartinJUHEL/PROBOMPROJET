@@ -21,4 +21,12 @@ public class TrainingActivity extends AppCompatActivity {
         startActivity(startQuizz);
 
     }
+
+    public void OnclickMemory(View view) {
+        Intent startMemory = new Intent(this, MemoriesActivity.class );
+        startActivity(startMemory);
+
+    }
+
+
 }

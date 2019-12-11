@@ -13,7 +13,11 @@
     <string name="button_setting_description">Button setting</string>
     <string name="button_training">Training</string>
     <string name="edit_username">Enter your username</string>
+    <string name="memory_name">Memory</string>
     <string name="activity_game_question1">Question</string>
     <string name="activity_game_question2">Question2</string>
     <string name="activity_game_question3">Question3</string>
+    <string name="button_classement">Ranking</string>
+    <string name="button_quizz">Quizz</string>
+    <string name="button_memory">Memory</string>
 </resources>
