@@ -33,7 +33,8 @@
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="@android:dimen/notification_large_icon_width"
         android:layout_marginTop="36dp"
-        android:text="@string/button_game3"
+        android:onClick="OnclickEscape"
+        android:text="@string/escape_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button4" />

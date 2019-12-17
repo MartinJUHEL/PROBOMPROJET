@@ -81,12 +81,12 @@ public class ClassementSlider extends LinearLayout {
         if (isOpen)
         {
             //Animation de translation du haut gauche vers bas droite
-            animation = new TranslateAnimation(0.0f,classementRelative.getWidth(), 0.0f, -classementRelative.getHeight());
+            animation = new TranslateAnimation(0.0f,0.0f, 0.0f, -classementRelative.getHeight());
             animation.setAnimationListener(openListener);
         } else
         {
             //Sinon, animation de translation du bas gauche vers haut droit
-            animation = new TranslateAnimation(classementRelative.getWidth(),0.0f, -classementRelative.getHeight(), 0.0f);
+            animation = new TranslateAnimation(0.0f,0.0f, -classementRelative.getHeight(), 0.0f);
             animation.setAnimationListener(closeListener);
         }
 

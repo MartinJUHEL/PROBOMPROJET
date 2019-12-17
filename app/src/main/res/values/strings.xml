@@ -20,4 +20,5 @@
     <string name="button_classement">Ranking</string>
     <string name="button_quizz">Quizz</string>
     <string name="button_memory">Memory</string>
+    <string name="escape_name">Escape</string>
 </resources>
