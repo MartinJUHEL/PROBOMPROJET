@@ -16,10 +16,12 @@ public class EscapeActivity extends Activity {
         display.getSize(size);
 
         // On cré un objet "GameView" qui est le code principal du jeu
-        escapeView=new EscapeView(this);
+        escapeView=new EscapeView(this,size.x,size.y);
 
         // et on l'affiche.
         setContentView(escapeView);
+
     }
+
 
 }

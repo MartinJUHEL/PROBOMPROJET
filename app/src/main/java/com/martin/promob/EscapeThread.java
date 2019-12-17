@@ -26,8 +26,7 @@ public class EscapeThread extends Thread {
 
     // démarrage du thread
     @Override
-    public void run()
-    {
+    public void run() {
         // déclaration des temps de départ et de pause
         long startTime;
         long sleepTime;
@@ -35,37 +34,41 @@ public class EscapeThread extends Thread {
         // boucle tant que running est vrai
         // il devient faux par setRunning(false), notamment lors de l'arrêt de l'application
         // cf : surfaceDestroyed() dans EscapeView.java
-        while (running)
-        {
+        while (running) {
             // horodatage actuel
             startTime = System.currentTimeMillis();
 
 
             // mise à jour du déplacement des ojets dans EscapeView.update()
-            synchronized (view.getHolder()) {view.update();}
+            synchronized (view.getHolder()) {
+                view.update();
+            }
 
             // Rendu de l'image, tout en vérrouillant l'accès car nous
             // y accédons à partir d'un processus distinct
             Canvas c = null;
             try {
                 c = view.getHolder().lockCanvas();
-                synchronized (view.getHolder()) {view.draw(c);}
-            }
-            finally
-            {
-                if (c != null) {view.getHolder().unlockCanvasAndPost(c);}
+                synchronized (view.getHolder()) {
+                    view.draw(c);
+                }
+            } finally {
+                if (c != null) {
+                    view.getHolder().unlockCanvasAndPost(c);
+                }
             }
 
             // Calcul du temps de pause, et pause si nécessaire
             // afin de ne réaliser le travail ci-dessus que X fois par secondes
-            sleepTime = SKIP_TICKS-(System.currentTimeMillis() - startTime);
+            sleepTime = SKIP_TICKS - (System.currentTimeMillis() - startTime);
             try {
-                if (sleepTime >= 0) {sleep(sleepTime);}
+                if (sleepTime >= 0) {
+                    sleep(sleepTime);
+                }
+            } catch (Exception e) {
             }
-            catch (Exception e) {}
         } // boucle while (running)
     } // public void run()
-
 
 
 }

@@ -1,7 +1,9 @@
 package com.martin.promob;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -21,17 +23,29 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
     private int life;
     private long tpstouch;
     private long chrono;
+    private float[]stars;
+    private int mScreenX,mScreenY;
+    private Bitmap bgImg;
 
-    public EscapeView(Context context) {
+    public EscapeView(Context context,int x, int y) {
         super(context);
         getHolder().addCallback(this);
         this.mContext = context;
         escapeThread = new EscapeThread(this);
-        missile = new EscapeMissile(this.getContext());
-        ball = new EscapeBall((SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE), context);
+
         life = 3;
         tpstouch = System.currentTimeMillis();
         chrono = 0;
+        mScreenX=x;
+        mScreenY=y;
+
+        Bitmap bgSrc = BitmapFactory.decodeResource(context.getResources(), R.mipmap.starbackground);
+        bgImg = Bitmap.createScaledBitmap(bgSrc, mScreenX, mScreenY, true);
+
+
+        missile = new EscapeMissile(this.getContext());
+        ball = new EscapeBall((SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE), context);
+
     }
 
     @Override
@@ -62,9 +76,6 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    public void setLife(int life) {
-        this.life = life;
-    }
 
     public void update() {
         missile.moveWithCollisionDetection();
@@ -73,6 +84,7 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
         if (isCollisionDetected(ball.getBall(), (int) ball.getxPos(), (int) ball.getyPos(), missile.getImg(), missile.getxPos(), missile.getyPos())) {
             touch();
         }
+        lose();
     }
 
 
@@ -114,23 +126,18 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
         return new Rect(left, top, right, bottom);
     }
 
-    public boolean lose() {
+    public void lose() {
         if (life == 0) {
-            return true;
-        } else {
-            return false;
+            final Activity act = (Activity) this.getContext();
+
+            act.finish();
         }
     }
 
     public void touch() {
-        System.out.println("Touché");
-        System.out.println("Tps :"+tpstouch);
-        System.out.println("Actuel: "+System.currentTimeMillis());
-
         if (System.currentTimeMillis() - tpstouch >= 1500) {
-            System.out.println("Enlever vie");
-
             life -= 1;
+            ball.boom();
             tpstouch = System.currentTimeMillis();
         }
 
@@ -139,11 +146,11 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        canvas.drawColor(Color.WHITE);
+        Paint paint = new Paint();
+        canvas.drawBitmap(bgImg,0,0,null);
         missile.draw(canvas);
         ball.draw(canvas);
-        Paint paint = new Paint();
-        paint.setColor(Color.BLACK);
+        paint.setColor(Color.WHITE);
         paint.setTextSize(50);
         canvas.drawText("Vie : " + life, (float) 100, (float) 100, paint);
         canvas.drawText("Temps : " + chrono/30, (float) 500, (float) 100, paint);
