@@ -1,6 +1,6 @@
 package com.martin.promob.model;
 
-import android.app.AlertDialog;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,18 +10,23 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.os.Build;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.martin.promob.PongActivity;
 import com.martin.promob.TrainingActivity;
 
 import java.io.IOException;
 
+import static android.app.Activity.RESULT_OK;
 import static com.martin.promob.QuizzActivity.BUNDLE_EXTRA_SCORE;
 
 public class PongView extends SurfaceView implements Runnable {
@@ -98,10 +103,10 @@ public class PongView extends SurfaceView implements Runnable {
         // Create a mBall
         mBall = new Ball(mScreenX, mScreenY);
 
-    /*
-        Instantiate our sound pool
-        dependent upon which version
-        of Android is present
+
+        //Instantiate our sound pool
+        //dependent upon which version
+        //of Android is present
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -126,27 +131,26 @@ public class PongView extends SurfaceView implements Runnable {
             AssetFileDescriptor descriptor;
 
             // Load our fx in memory ready for use
-            descriptor = assetManager.openFd("beep1.ogg");
+            descriptor = assetManager.openFd("raw/beep1.ogg");
             beep1ID = sp.load(descriptor, 0);
 
-            descriptor = assetManager.openFd("beep2.ogg");
+            descriptor = assetManager.openFd("raw/beep2.ogg");
             beep2ID = sp.load(descriptor, 0);
 
-            descriptor = assetManager.openFd("beep3.ogg");
+            descriptor = assetManager.openFd("raw/beep3.ogg");
             beep3ID = sp.load(descriptor, 0);
 
-            descriptor = assetManager.openFd("loseLife.ogg");
+            descriptor = assetManager.openFd("raw/loselife.ogg");
             loseLifeID = sp.load(descriptor, 0);
 
-            descriptor = assetManager.openFd("explode.ogg");
-            explodeID = sp.load(descriptor, 0);
+
 
         }catch(IOException e){
-            // Print an error message to the console
+            // erreur si les fichiers fonctionnent pas
             Log.e("error", "failed to load sound files");
         }
 
-     */
+
 
         setupAndRestart();
     }
@@ -155,12 +159,13 @@ public class PongView extends SurfaceView implements Runnable {
     public void setupAndRestart() {
 
         // Put the mBall back to the start
-        mBall.reset(mScreenX, mScreenY);
+        mBall.reset(mScreenX, mScreenY/2);
+
+        mPaused = true;
 
         // if game over reset scores and mLives
         if (mLives == 0) {
-            mScore = 0;
-            mLives = 3;
+            endgame();
         }
 
     }
@@ -213,7 +218,7 @@ public class PongView extends SurfaceView implements Runnable {
             mScore++;
             mBall.increaseVelocity();
 
-            //sp.play(beep1ID, 1, 1, 0, 0, 1);
+            sp.play(beep1ID, 1, 1, 0, 0, 1);
         }
 
         // Bounce the mBall back when it hits the bottom of screen
@@ -223,14 +228,14 @@ public class PongView extends SurfaceView implements Runnable {
 
             // Lose a life
             mLives--;
-            //sp.play(loseLifeID, 1, 1, 0, 0, 1);
+            mBall.reset(mScreenX, mScreenY/2);
+            mPaused = true;
+
+            sp.play(loseLifeID, 1, 1, 0, 0, 1);
 
             if (mLives == 0) {
                 mPaused = true;
                 endgame();
-
-
-                //setupAndRestart();
             }
         }
 
@@ -239,7 +244,7 @@ public class PongView extends SurfaceView implements Runnable {
             mBall.reverseYVelocity();
             mBall.clearObstacleY(12);
 
-            //sp.play(beep2ID, 1, 1, 0, 0, 1);
+            sp.play(beep2ID, 1, 1, 0, 0, 1);
         }
 
         // If the mBall hits left wall bounce
@@ -247,7 +252,7 @@ public class PongView extends SurfaceView implements Runnable {
             mBall.reverseXVelocity();
             mBall.clearObstacleX(2);
 
-            //sp.play(beep3ID, 1, 1, 0, 0, 1);
+            sp.play(beep3ID, 1, 1, 0, 0, 1);
         }
 
         // If the mBall hits right wall bounce
@@ -255,7 +260,7 @@ public class PongView extends SurfaceView implements Runnable {
             mBall.reverseXVelocity();
             mBall.clearObstacleX(mScreenX - 22);
 
-            //   sp.play(beep3ID, 1, 1, 0, 0, 1);
+            sp.play(beep3ID, 1, 1, 0, 0, 1);
         }
 
     }
@@ -338,12 +343,10 @@ public class PongView extends SurfaceView implements Runnable {
         return true;
     }
     public void endgame(){
-        mCanvas = mOurHolder.lockCanvas();
+        final Activity act = (Activity) this.getContext();
 
-        // Draw the mScore
-        mPaint.setTextSize(40);
-        mCanvas.drawText("Well done! " + "Score: " + mScore + "   Lives: " + mLives , mScreenX/2, mScreenY/2, mPaint);
-        mOurHolder.unlockCanvasAndPost(mCanvas);
+        
+        act.finish();
 
     }
 
