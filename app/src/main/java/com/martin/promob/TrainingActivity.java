@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+
+import com.martin.promob.model.PongView;
 
 public class TrainingActivity extends AppCompatActivity {
 
@@ -17,8 +17,14 @@ public class TrainingActivity extends AppCompatActivity {
     }
 
     public void OnclickQuizz(View view) {
-        Intent startQuizz = new Intent(this, Quizz.class);
+        Intent startQuizz = new Intent(this, QuizzActivity.class);
         startActivity(startQuizz);
+
+    }
+
+    public void OnclickPong(View view) {
+        Intent startPong = new Intent(this, PongActivity.class);
+        startActivity(startPong);
 
     }
 
@@ -30,3 +36,5 @@ public class TrainingActivity extends AppCompatActivity {
 
 
 }
+
+

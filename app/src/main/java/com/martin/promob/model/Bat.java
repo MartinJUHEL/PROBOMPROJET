@@ -71,8 +71,11 @@ import android.graphics.RectF;
 
             mXCoord = mBatMoving;
 
+            float largeur = (mRect.right - mRect.left);
+
             // Make sure it's not leaving screen
-            if(mRect.left < 0){ mXCoord = 0; } if(mRect.right > mScreenX){
+            if(mRect.left < 0){ mXCoord = 0; }
+            if((mBatMoving+largeur)> mScreenX){
                 mXCoord = mScreenX -
                         // The width of the Bat
                         (mRect.right - mRect.left);

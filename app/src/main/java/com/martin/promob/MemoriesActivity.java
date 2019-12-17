@@ -20,7 +20,8 @@ import com.martin.promob.model.MemoryCard;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static com.martin.promob.Quizz.BUNDLE_EXTRA_SCORE;
+import static com.martin.promob.QuizzActivity.BUNDLE_EXTRA_SCORE;
+
 
 public class MemoriesActivity extends AppCompatActivity implements View.OnClickListener {
 

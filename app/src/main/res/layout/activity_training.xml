@@ -43,6 +43,7 @@
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="@android:dimen/notification_large_icon_width"
         android:layout_marginTop="36dp"
+        android:onClick="OnclickPong"
         android:text="@string/button_game4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
