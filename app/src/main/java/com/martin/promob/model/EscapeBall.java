@@ -20,8 +20,6 @@ public class EscapeBall extends Activity implements SensorEventListener2 {
     private float xMax, yMax;
     private int ballW,ballH;
     private Bitmap ball;
-    private Bitmap boomImg;
-    private long boom;
 
 ///////////////////Remplacer 100 par la taille !!
 
@@ -30,16 +28,13 @@ public class EscapeBall extends Activity implements SensorEventListener2 {
 
     public EscapeBall(SensorManager sensorManager, Context context) {
         Bitmap ballSrc = BitmapFactory.decodeResource(context.getResources(), R.mipmap.faucon);
-        Bitmap boomSrc=BitmapFactory.decodeResource(context.getResources(),R.mipmap.boom);
         ballW = 200;
         ballH = 200;
         xPos=500;
         yPos=1000;
 
         ball = Bitmap.createScaledBitmap(ballSrc, ballW, ballH, true);
-        boomImg = Bitmap.createScaledBitmap(boomSrc, 200, 200, true);
         this.sensorManager = sensorManager;
-        boom=0;
 
     }
 
@@ -69,6 +64,14 @@ public class EscapeBall extends Activity implements SensorEventListener2 {
 
     public float getyPos() {
         return yPos;
+    }
+
+    public int getBallW() {
+        return ballW;
+    }
+
+    public int getBallH() {
+        return ballH;
     }
 
     public void updateBall() {
@@ -102,10 +105,7 @@ public class EscapeBall extends Activity implements SensorEventListener2 {
 
     }
 
-    public void boom(){
-        System.out.println("Boom");
-    boom=System.currentTimeMillis();
-    }
+
 
 
 
@@ -122,9 +122,7 @@ public class EscapeBall extends Activity implements SensorEventListener2 {
     public void draw(Canvas canvas) {
 
         canvas.drawBitmap(ball, xPos, yPos, null);
-        if(System.currentTimeMillis()-boom<=1500){
-            canvas.drawBitmap(boomImg, xPos - 5, yPos - 5, null);
-        }
+
 
     }
 }

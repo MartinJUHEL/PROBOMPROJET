@@ -12,7 +12,7 @@
     <string name="button_one_player">Solo</string>
     <string name="button_setting_description">Button setting</string>
     <string name="button_training">Training</string>
-    <string name="edit_username">Enter your username</string>
+    <string name="edit_user1">Player 1</string>
     <string name="memory_name">Memory</string>
     <string name="activity_game_question1">Question</string>
     <string name="activity_game_question2">Question2</string>
@@ -21,4 +21,7 @@
     <string name="button_quizz">Quizz</string>
     <string name="button_memory">Memory</string>
     <string name="escape_name">Escape</string>
+    <string name="edit_user2">Player 2</string>
+    <string name="button_solo_classement">Solo ranking</string>
+    <string name="button_multi_classement">Multiplayer ranking</string>
 </resources>

@@ -7,25 +7,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import static com.martin.promob.LoginActivity.EXTRA_USER_LOGIN;
 
 public class TypeActivity extends AppCompatActivity {
 
-    String userLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type);
 
-        Intent intent = getIntent();
-        String type = intent.getStringExtra(MainActivity.EXTRA_TYPE);
+        TextView textJ1 = findViewById(R.id.textView2);
+        textJ1.setText(MainActivity.getCurrentUser().getFirstname());
 
-        Intent intentLogin = getIntent();
-        userLogin = intentLogin.getStringExtra(EXTRA_USER_LOGIN);
-
-        TextView textView = findViewById(R.id.textView);
-        textView.setText("Mode "+ type);
+        if(MainActivity.isMulti()) {
+            TextView textJ2 = findViewById(R.id.textView);
+            textJ2.setText(MainActivity.getCurrentUser2().getFirstname());
+        }
     }
 
      public void training(View view) {

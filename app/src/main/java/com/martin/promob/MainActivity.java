@@ -6,30 +6,45 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.ScrollView;
 
 import com.martin.promob.model.User;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.martin.promob.LoginActivity.EXTRA_USER_LOGIN;
 
 public class MainActivity extends Activity {
 
     private Button classementbutton;
     private ClassementSlider classementSlider;
     private RelativeLayout toHide;
+    private ScrollView classementView;
 
-    public static final String EXTRA_TYPE = "com.martin.EXTRA_TYPE";
-    public static String userLogin;
-    public static Map<String, User> mUser;
-    private User user;
+
+    private static Map<String, User> mUser;
+    private static User currentUser;
+    private static User currentUser2;
+    private static boolean multi;
+
+    private Button scoreSolo;
+    private Button scoreMulti;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mUser=new HashMap<>();
+        currentUser=null;
+        currentUser2=null;
+
+        multi=false;
+
+        scoreSolo=findViewById(R.id.soloclassement);
+        scoreMulti=findViewById(R.id.multiclassement);
+
+        classementView=findViewById(R.id.scroll_view_classement);
 
         // On récupère le bouton pour cacher/afficher le menu
         classementbutton = findViewById(R.id.buttonclassement);
@@ -46,35 +61,52 @@ public class MainActivity extends Activity {
 
 
 
-        Intent intentLogin = getIntent();
-        userLogin = intentLogin.getStringExtra(EXTRA_USER_LOGIN);
-
-        TextView textView = findViewById(R.id.textView);
-        textView.setText("Hello " + userLogin);
-         mUser= new HashMap<>();
-        mUser.put(userLogin, new User(userLogin));
-
     }
 
     public void onePlayer(View view) {
-        Intent intent = new Intent(this, TypeActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         Button oneplayer = (Button) findViewById(R.id.onePlayerButton);
         String type = oneplayer.getText().toString();
-        intent.putExtra(EXTRA_TYPE, type);
-        intent.putExtra(EXTRA_USER_LOGIN, userLogin);
+        multi=false;
         startActivity(intent);
     }
 
     public void multiPlayer(View view) {
-        Intent intent = new Intent(this, TypeActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         Button multiplayerButton = (Button) findViewById(R.id.multiplayerButton);
         String type = multiplayerButton.getText().toString();
-        intent.putExtra(EXTRA_TYPE, type);
+        multi=true;
         startActivity(intent);
     }
 
     public void showClassement(View view) {
         classementSlider.toggle();
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
+    public static User getCurrentUser2() {
+        return currentUser2;
+    }
+
+    public static void setCurrentUser(User user) {
+         currentUser = user;
+    }
+
+    public static void setCurrentUser2(User user) {
+        currentUser2 = user;
+    }
+
+
+    public static boolean isMulti() {
+        return multi;
+    }
+
+
+    public static Map<String, User> getmUser() {
+        return mUser;
     }
 
 
