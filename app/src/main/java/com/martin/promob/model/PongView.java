@@ -22,6 +22,7 @@ import android.view.SurfaceView;
 import androidx.appcompat.app.AlertDialog;
 
 import com.martin.promob.PongActivity;
+import com.martin.promob.R;
 import com.martin.promob.TrainingActivity;
 
 import java.io.IOException;
@@ -30,6 +31,7 @@ import static android.app.Activity.RESULT_OK;
 import static com.martin.promob.QuizzActivity.BUNDLE_EXTRA_SCORE;
 
 public class PongView extends SurfaceView implements Runnable {
+
 
     // This is our thread
     Thread mGameThread = null;
@@ -83,6 +85,7 @@ public class PongView extends SurfaceView implements Runnable {
 
     public PongView(Context context, int x, int y) {
 
+
     /*
         The next line of code asks the
         SurfaceView class to set up our object.
@@ -125,30 +128,13 @@ public class PongView extends SurfaceView implements Runnable {
         }
 
 
-        try{
-            // Create objects of the 2 required classes
-            AssetManager assetManager = context.getAssets();
-            AssetFileDescriptor descriptor;
 
             // Load our fx in memory ready for use
-            descriptor = assetManager.openFd("raw/beep1.ogg");
-            beep1ID = sp.load(descriptor, 0);
-
-            descriptor = assetManager.openFd("raw/beep2.ogg");
-            beep2ID = sp.load(descriptor, 0);
-
-            descriptor = assetManager.openFd("raw/beep3.ogg");
-            beep3ID = sp.load(descriptor, 0);
-
-            descriptor = assetManager.openFd("raw/loselife.ogg");
-            loseLifeID = sp.load(descriptor, 0);
+            beep1ID = sp.load(this.getContext(), R.raw.when, 0);
+            beep2ID = sp.load(this.getContext(), R.raw.beep2, 0);
+            beep3ID = sp.load(this.getContext(), R.raw.looser, 0);
 
 
-
-        }catch(IOException e){
-            // erreur si les fichiers fonctionnent pas
-            Log.e("error", "failed to load sound files");
-        }
 
 
 
@@ -218,7 +204,7 @@ public class PongView extends SurfaceView implements Runnable {
             mScore++;
             mBall.increaseVelocity();
 
-            sp.play(beep1ID, 1, 1, 0, 0, 1);
+            sp.play(beep2ID, 1, 1, 0, 0, 1);
         }
 
         // Bounce the mBall back when it hits the bottom of screen
@@ -231,7 +217,7 @@ public class PongView extends SurfaceView implements Runnable {
             mBall.reset(mScreenX, mScreenY/2);
             mPaused = true;
 
-            sp.play(loseLifeID, 1, 1, 0, 0, 1);
+            sp.play(beep3ID, 1, 1, 0, 0, 1);
 
             if (mLives == 0) {
                 mPaused = true;
@@ -244,7 +230,7 @@ public class PongView extends SurfaceView implements Runnable {
             mBall.reverseYVelocity();
             mBall.clearObstacleY(12);
 
-            sp.play(beep2ID, 1, 1, 0, 0, 1);
+            sp.play(beep1ID, 1, 1, 0, 0, 1);
         }
 
         // If the mBall hits left wall bounce
@@ -252,7 +238,7 @@ public class PongView extends SurfaceView implements Runnable {
             mBall.reverseXVelocity();
             mBall.clearObstacleX(2);
 
-            sp.play(beep3ID, 1, 1, 0, 0, 1);
+            sp.play(beep1ID, 1, 1, 0, 0, 1);
         }
 
         // If the mBall hits right wall bounce
@@ -260,7 +246,7 @@ public class PongView extends SurfaceView implements Runnable {
             mBall.reverseXVelocity();
             mBall.clearObstacleX(mScreenX - 22);
 
-            sp.play(beep3ID, 1, 1, 0, 0, 1);
+            sp.play(beep1ID, 1, 1, 0, 0, 1);
         }
 
     }
@@ -295,7 +281,7 @@ public class PongView extends SurfaceView implements Runnable {
 
             // Draw the mScore
             mPaint.setTextSize(40);
-            mCanvas.drawText("Score: " + mScore + "   Lives: " + mLives, 10, 50, mPaint);
+            mCanvas.drawText("Score: " + mScore + "   Vies: " + mLives, 10, 50, mPaint);
 
             // Draw everything to the screen
             mOurHolder.unlockCanvasAndPost(mCanvas);
@@ -344,8 +330,6 @@ public class PongView extends SurfaceView implements Runnable {
     }
     public void endgame(){
         final Activity act = (Activity) this.getContext();
-
-        
         act.finish();
 
     }
