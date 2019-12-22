@@ -34,6 +34,14 @@ public class TrainingActivity extends AppCompatActivity {
 
     }
 
+    public void OnclickEscape(View view) {
+        Intent startEscape = new Intent(this, EscapeActivity.class );
+        startActivity(startEscape);
+
+    }
+
+
+
 
 }
 

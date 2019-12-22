@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">PROMOB</string>
-    <string name="edit_username">Entrer votre surnom</string>
+    <string name="edit_user1">Joueur 1</string>
     <string name="button_send">Send</string>
     <string name="button_one_player">Un Joueur</string>
     <string name="button_multiplayer">Multijoueur</string>
@@ -21,4 +21,8 @@
     <string name="button_classement">Classement</string>
     <string name="button_memory">Mémorie</string>
     <string name="button_quizz">Quizz</string>
+    <string name="escape_name">Escape</string>
+    <string name="edit_user2">Joueur 2</string>
+    <string name="button_solo_classement">Classement solo</string>
+    <string name="button_multi_classement">Classement multijoueur</string>
 </resources>
