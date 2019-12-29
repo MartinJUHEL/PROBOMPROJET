@@ -26,10 +26,8 @@ public class PongActivity extends AppCompatActivity {
         Point size = new Point();
         display.getSize(size);
 
-        System.out.println("DIMENSIONS : "+size.x+ size.y);
-
         // Initialize pongView and set it as the view
-        pongView = new PongView(this, size.x, size.y-500);
+        pongView = new PongView(this, size.x, size.y-240);
         setContentView(pongView);
 
 //        onResume();

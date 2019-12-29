@@ -10,32 +10,23 @@
         android:id="@+id/button4"
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="@android:dimen/notification_large_icon_width"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         android:onClick="OnclickMemory"
         android:text="@string/button_memory"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button9" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="@android:dimen/thumbnail_width"
-        android:layout_height="@android:dimen/notification_large_icon_height"
-        android:layout_marginTop="36dp"
-        android:text="@string/button_game6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button8" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="@android:dimen/notification_large_icon_width"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         android:onClick="OnclickEscape"
         android:text="@string/escape_name"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button4" />
 
@@ -43,11 +34,11 @@
         android:id="@+id/button7"
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="@android:dimen/notification_large_icon_width"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         android:onClick="OnclickPong"
         android:text="@string/button_game4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button6" />
 
@@ -55,7 +46,7 @@
         android:id="@+id/button8"
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="@android:dimen/notification_large_icon_width"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         android:text="@string/button_game5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -66,10 +57,26 @@
         android:id="@+id/button9"
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="@android:dimen/notification_large_icon_height"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="16dp"
         android:onClick="OnclickQuizz"
         android:text="@string/button_quizz"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="@android:dimen/thumbnail_height"
+        android:layout_height="@android:dimen/notification_large_icon_width"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="Jeu 6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button8"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,14 +2,13 @@ package com.martin.promob.model;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
-import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -19,16 +18,9 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import androidx.appcompat.app.AlertDialog;
-
-import com.martin.promob.PongActivity;
 import com.martin.promob.R;
-import com.martin.promob.TrainingActivity;
 
-import java.io.IOException;
-
-import static android.app.Activity.RESULT_OK;
-import static com.martin.promob.QuizzActivity.BUNDLE_EXTRA_SCORE;
+import java.util.Random;
 
 public class PongView extends SurfaceView implements Runnable {
 
@@ -60,10 +52,10 @@ public class PongView extends SurfaceView implements Runnable {
     int mScreenY;
 
     // The players mBat
-    Bat mBat;
+    PongBat mBat;
 
     // A mBall
-    Ball mBall;
+    PongBall mBall;
 
     // For sound FX
     SoundPool sp;
@@ -71,6 +63,10 @@ public class PongView extends SurfaceView implements Runnable {
     int beep2ID = -1;
     int beep3ID = -1;
     int loseLifeID = -1;
+
+    //creer un fond
+    private Bitmap bgImg;
+
 
     // The mScore
     int mScore = 0;
@@ -85,11 +81,6 @@ public class PongView extends SurfaceView implements Runnable {
 
     public PongView(Context context, int x, int y) {
 
-
-    /*
-        The next line of code asks the
-        SurfaceView class to set up our object.
-    */
         super(context);
 
         // Set the screen width and height
@@ -101,17 +92,14 @@ public class PongView extends SurfaceView implements Runnable {
         mPaint = new Paint();
 
         // A new mBat
-        mBat = new Bat(mScreenX, mScreenY);
+        mBat = new PongBat(mScreenX, mScreenY);
 
         // Create a mBall
-        mBall = new Ball(mScreenX, mScreenY);
+        mBall = new PongBall(mScreenX, mScreenY);
 
+        bgImg = selectBckground(this.getContext(),bgImg);
 
-        //Instantiate our sound pool
-        //dependent upon which version
-        //of Android is present
-
-
+        //creer des sons en fonction de la version d'android
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_MEDIA)
@@ -154,6 +142,31 @@ public class PongView extends SurfaceView implements Runnable {
             endgame();
         }
 
+    }
+
+    public Bitmap selectBckground(Context context,Bitmap bgImg){
+        //nombre aleatoire de 0 a 3
+        final int random = new Random().nextInt(4);
+        Bitmap bgSrc;
+
+        if(random==0){
+            //prendre un fond dans la librairie :
+            bgSrc = BitmapFactory.decodeResource(context.getResources(), R.mipmap.feuille0);
+        }
+        else if(random==1){
+            bgSrc = BitmapFactory.decodeResource(context.getResources(), R.mipmap.feuille1);
+
+        }
+        else if(random==2) {
+            bgSrc = BitmapFactory.decodeResource(context.getResources(), R.mipmap.feuille2);
+
+        }
+        else{
+            bgSrc = BitmapFactory.decodeResource(context.getResources(), R.mipmap.feuille3);
+
+        }
+
+        return Bitmap.createScaledBitmap(bgSrc, mScreenX, mScreenY, true);
     }
 
     @Override
@@ -210,7 +223,7 @@ public class PongView extends SurfaceView implements Runnable {
         // Bounce the mBall back when it hits the bottom of screen
         if (mBall.getRect().bottom > mScreenY) {
             mBall.reverseYVelocity();
-            mBall.clearObstacleY(mScreenY - 2);
+            mBall.clearObstacleY(mScreenY - 8);
 
             // Lose a life
             mLives--;
@@ -228,7 +241,8 @@ public class PongView extends SurfaceView implements Runnable {
         // Bounce the mBall back when it hits the top of screen
         if (mBall.getRect().top < 0) {
             mBall.reverseYVelocity();
-            mBall.clearObstacleY(12);
+            mBall.clearObstacleY(48);
+            //48
 
             sp.play(beep1ID, 1, 1, 0, 0, 1);
         }
@@ -238,6 +252,7 @@ public class PongView extends SurfaceView implements Runnable {
             mBall.reverseXVelocity();
             mBall.clearObstacleX(2);
 
+
             sp.play(beep1ID, 1, 1, 0, 0, 1);
         }
 
@@ -245,6 +260,7 @@ public class PongView extends SurfaceView implements Runnable {
         if (mBall.getRect().right > mScreenX) {
             mBall.reverseXVelocity();
             mBall.clearObstacleX(mScreenX - 22);
+
 
             sp.play(beep1ID, 1, 1, 0, 0, 1);
         }
@@ -263,21 +279,25 @@ public class PongView extends SurfaceView implements Runnable {
             // Lock the mCanvas ready to draw
             mCanvas = mOurHolder.lockCanvas();
 
+            mPaint.setTypeface(Typeface.DEFAULT_BOLD);
+
+
             // Clear the screen with my favorite color
-            mCanvas.drawColor(Color.argb(255, 120, 197, 87));
+            mCanvas.drawBitmap(bgImg, 0, 0, null);
 
             // Choose the brush color for drawing
             mPaint.setColor(Color.argb(255, 255, 255, 255));
-
             // Draw the mBat
             mCanvas.drawRect(mBat.getRect(), mPaint);
 
+
+            mPaint.setColor(Color.argb(255,237, 0, 0));
             // Draw the mBall
             mCanvas.drawRect(mBall.getRect(), mPaint);
 
 
-            // Change the drawing color to white
-            mPaint.setColor(Color.argb(255, 255, 255, 255));
+            // Mettre en blanc les vies et le score
+            mPaint.setColor(Color.argb(255, 255, 0, 0));
 
             // Draw the mScore
             mPaint.setTextSize(40);
