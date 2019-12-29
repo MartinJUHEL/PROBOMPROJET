@@ -28,8 +28,14 @@ public class TypeActivity extends AppCompatActivity {
      public void training(View view) {
      Intent intent = new Intent(this, TrainingActivity.class);
      startActivity(intent);
- }
+    }
 
+    public void competition(View view) {
+        ScoreActivity.initialise();
+        Intent intent = new Intent(this, ScoreActivity.class);
+        startActivity(intent);
+
+    }
 
 
 }

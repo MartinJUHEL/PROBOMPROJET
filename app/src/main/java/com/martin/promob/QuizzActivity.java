@@ -38,9 +38,8 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
     private int mNumberOfQuestionsInitial;
 
 
-    public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
+    //public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
     public static final String BUNDLE_STATE_SCORE = "currentScore";
-    public static final String BUNDLE_STATE_QUESTION = "currentQuestion";
 
     private boolean mEnableTouchEvents;
 
@@ -76,7 +75,6 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
         mCurrentQuestion = mQuestionBank.getQuestion();
         this.displayQuestion(mCurrentQuestion);
 
-        System.out.println("VALEUR INDEX "+ mCurrentQuestion.toString());
 
   /*      if (savedInstanceState != null) {
             mScore = savedInstanceState.getInt(BUNDLE_STATE_SCORE);
@@ -96,7 +94,6 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(BUNDLE_STATE_SCORE, mScore);
-        outState.putInt(BUNDLE_STATE_QUESTION, mNumberOfQuestions);
 
         super.onSaveInstanceState(outState);
     }
@@ -148,7 +145,7 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
                     public void onClick(DialogInterface dialog, int which) {
                         // End the activity
                         Intent intent = new Intent();
-                        intent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
+                        intent.putExtra(BUNDLE_STATE_SCORE, mScore);
                         setResult(RESULT_OK, intent);
                         finish();
                     }

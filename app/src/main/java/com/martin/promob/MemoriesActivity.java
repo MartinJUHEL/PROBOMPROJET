@@ -21,7 +21,7 @@ import com.martin.promob.model.MemoryCard;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static com.martin.promob.QuizzActivity.BUNDLE_EXTRA_SCORE;
+import static com.martin.promob.QuizzActivity.BUNDLE_STATE_SCORE;
 
 
 public class MemoriesActivity extends AppCompatActivity implements View.OnClickListener {
@@ -203,7 +203,7 @@ public class MemoriesActivity extends AppCompatActivity implements View.OnClickL
                     public void onClick(DialogInterface dialog, int which) {
                         // End the activity
                         Intent intent = new Intent();
-                        intent.putExtra(BUNDLE_EXTRA_SCORE, scoreBleu);
+                        intent.putExtra(BUNDLE_STATE_SCORE, scoreBleu);
                         setResult(RESULT_OK, intent);
                         finish();
                     }

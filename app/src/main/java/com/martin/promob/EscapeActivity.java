@@ -5,6 +5,8 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
 
+import com.martin.promob.model.EscapeView;
+
 public class EscapeActivity extends Activity {
     private EscapeView escapeView;
 

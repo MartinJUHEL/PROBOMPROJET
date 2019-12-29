@@ -3,8 +3,6 @@ package com.martin.promob.model;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-import com.martin.promob.EscapeView;
-
 public class Explosion extends GameObject {
     private int rowIndex = 0 ;
     private int colIndex = -1 ;

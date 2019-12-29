@@ -25,4 +25,5 @@
     <string name="edit_user2">Joueur 2</string>
     <string name="button_solo_classement">Classement solo</string>
     <string name="button_multi_classement">Classement multijoueur</string>
+    <string name="button_next">Suivant</string>
 </resources>

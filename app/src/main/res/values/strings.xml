@@ -24,4 +24,5 @@
     <string name="edit_user2">Player 2</string>
     <string name="button_solo_classement">Solo ranking</string>
     <string name="button_multi_classement">Multiplayer ranking</string>
+    <string name="button_next">Next</string>
 </resources>
