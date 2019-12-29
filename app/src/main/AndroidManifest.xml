@@ -40,7 +40,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".MemoriesActivity" />
+        <activity android:name=".MemoriesMultiActivity" />
+        <activity android:name=".MemorySoloActivity" />
+
         <activity android:name=".EscapeActivity" />
         <activity android:name=".QuizzActivity" />
         <activity android:name=".PongActivity" />

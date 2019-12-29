@@ -1,13 +1,12 @@
 package com.martin.promob;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +20,11 @@ public class ScoreActivity extends AppCompatActivity {
     public static int mScoreTotJ2;
     public static int numberActivity;
 
-    private static List<Integer> list ;
+    private static List<Integer> list;
     private Button next;
+
+    private TextView scorej1View;
+    private TextView scorej1TotView;
 
 
     @Override
@@ -30,10 +32,20 @@ public class ScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-        
+        scorej1View = findViewById(R.id.textView_scoretemp);
+        scorej1TotView = findViewById(R.id.textView_scoretotal);
+
+        scorej1View.setText("Score : " + mScoreJ1);
+        scorej1TotView.setText("Score total : " + mScoreTotJ1);
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        scorej1View.setText("Score : " + mScoreJ1);
+        scorej1TotView.setText("Score total : " + mScoreTotJ1);
+    }
 
     public static void initialise() {
         mScoreJ1 = 0;
@@ -62,7 +74,7 @@ public class ScoreActivity extends AppCompatActivity {
 
         } else {
             numberActivity--;
-            final int game = new Random().nextInt(list.size()-1);
+            final int game = new Random().nextInt(list.size() - 1);
 
             Intent intent;
 
@@ -78,7 +90,7 @@ public class ScoreActivity extends AppCompatActivity {
                     intent = new Intent(this, PongActivity.class);
                     break;
                 case 3:
-                    intent = new Intent(this, MemoriesActivity.class);
+                    intent = new Intent(this, MemorySoloActivity.class);
                     break;
                 case 4:
                     intent = new Intent(this, LoginActivity.class);
@@ -98,7 +110,7 @@ public class ScoreActivity extends AppCompatActivity {
     }
 
     public static void setmScoreJ1(int mScoreJ1) {
-        ScoreActivity.mScoreJ1 += mScoreJ1;
+        ScoreActivity.mScoreJ1 = mScoreJ1;
     }
 
     public static void setmScoreJ2(int mScoreJ2) {
@@ -106,7 +118,7 @@ public class ScoreActivity extends AppCompatActivity {
     }
 
     public static void addmScoreTotJ1() {
-        ScoreActivity.mScoreTotJ1 = mScoreJ1;
+        ScoreActivity.mScoreTotJ1 += mScoreJ1;
     }
 
     public static void addmScoreTotJ2() {

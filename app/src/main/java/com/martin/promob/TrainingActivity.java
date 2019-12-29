@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.martin.promob.model.PongView;
-
 public class TrainingActivity extends AppCompatActivity {
 
     @Override
@@ -29,7 +27,7 @@ public class TrainingActivity extends AppCompatActivity {
     }
 
     public void OnclickMemory(View view) {
-        Intent startMemory = new Intent(this, MemoriesActivity.class );
+        Intent startMemory = new Intent(this, MemorySoloActivity.class );
         startActivity(startMemory);
 
     }

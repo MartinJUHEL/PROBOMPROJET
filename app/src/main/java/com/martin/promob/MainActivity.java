@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.martin.promob.model.User;
 
@@ -22,16 +23,17 @@ public class MainActivity extends Activity {
     private ClassementSlider classementSlider;
     private RelativeLayout toHide;
     private ScrollView classementView;
+    private TextView classementTextView;
 
 
     private static Map<String, User> mUser;
-    private static ArrayList<Pair<Integer, User>> mScores;
+    private static ArrayList<Pair<Integer, User>> soloScores;
+    private static ArrayList<Pair<Integer, User>> multiScores;
+
     private static User currentUser;
     private static User currentUser2;
     private static boolean multi;
 
-    private Button scoreSolo;
-    private Button scoreMulti;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,29 +41,33 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         mUser = new HashMap<>();
-        mScores = new ArrayList<>();
+        multiScores = new ArrayList<>();
+        soloScores = new ArrayList<>();
         currentUser = null;
         currentUser2 = null;
 
         multi = false;
-
-        scoreSolo = findViewById(R.id.soloclassement);
-        scoreMulti = findViewById(R.id.multiclassement);
 
         classementView = findViewById(R.id.scroll_view_classement);
 
         // On récupère le bouton pour cacher/afficher le menu
         classementbutton = findViewById(R.id.buttonclassement);
 
+        // On récupère le layout principal
+        classementSlider = findViewById(R.id.classementslider);
+
         // On récupère le menu
         toHide = findViewById(R.id.toHide);
         toHide.setVisibility(View.GONE);
 
-        // On récupère le layout principal
-        classementSlider = findViewById(R.id.classementslider);
+
 
         // On donne le menu au layout principal
         classementSlider.setToHide(toHide);
+
+        classementTextView=findViewById(R.id.playerclassement_textview);
+
+
 
 
     }
@@ -77,9 +83,18 @@ public class MainActivity extends Activity {
     public void multiPlayer(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
         Button multiplayerButton = (Button) findViewById(R.id.multiplayerButton);
-        String type = multiplayerButton.getText().toString();
         multi = true;
         startActivity(intent);
+    }
+
+    public void soloRanking(View view){
+        Button scoreSolo = findViewById(R.id.soloclassement);
+        classementTextView.setText(showSoloScore());
+    }
+
+    public void multiRanking(View view){
+        Button scoremulti = findViewById(R.id.multiclassement);
+        classementTextView.setText(showMultiScore());
     }
 
     public void showClassement(View view) {
@@ -112,27 +127,57 @@ public class MainActivity extends Activity {
         return mUser;
     }
 
-    public static ArrayList<Pair<Integer, User>> getmScores() {
-        return mScores;
+    public static ArrayList<Pair<Integer, User>> getSoloScores() {
+        return soloScores;
     }
 
-    public static void addScore(int score, User user) {
+    public static ArrayList<Pair<Integer, User>> getMultiScores() {
+        return multiScores;
+    }
+
+
+
+    public static void addSoloScore(int score, User user) {
         boolean insere = false;
         Pair p = new Pair(score, user);
-        for (int i = 0; i < mScores.size(); i++) {
-            if ((score >= mScores.get(i).first)&& !insere) {
-                mScores.add(i, p);
+        user.addScore(score);
+        for (int i = 0; i < soloScores.size(); i++) {
+            if ((score >= soloScores.get(i).first)&& !insere) {
+                soloScores.add(i, p);
                 insere = true;
             }
         }
         if (!insere) {
-            mScores.add(p);
+            soloScores.add(p);
         }
     }
 
-    public String showScore(){
+    public String showSoloScore(){
         String s="";
-        for (Pair p:mScores) {
+        for (Pair p:soloScores) {
+            s+= p.second +" : "+p.first+"\n";
+        }
+        return s;
+    }
+
+    public static void addMultiScore(int score, User user) {
+        boolean insere = false;
+        Pair p = new Pair(score, user);
+        user.addScore(score);
+        for (int i = 0; i < multiScores.size(); i++) {
+            if ((score >= multiScores.get(i).first)&& !insere) {
+                multiScores.add(i, p);
+                insere = true;
+            }
+        }
+        if (!insere) {
+            multiScores.add(p);
+        }
+    }
+
+    public String showMultiScore(){
+        String s="";
+        for (Pair p:multiScores) {
             s+= p.second +" : "+p.first+"\n";
         }
         return s;

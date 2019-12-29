@@ -1,18 +1,17 @@
 package com.martin.promob;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Handler;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.martin.promob.model.Question;
 import com.martin.promob.model.QuestionBank;
@@ -23,7 +22,7 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
 
     private int mScore;
 
-    private TextView questionTextView ;
+    private TextView questionTextView;
     private Button answer1;
     private Button answer2;
     private Button answer3;
@@ -136,23 +135,30 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void endGame() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Bien joue!")
-                .setMessage("Ton score est de " + mScore + "/" + mNumberOfQuestionsInitial )
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // End the activity
-                        Intent intent = new Intent();
-                        intent.putExtra(BUNDLE_STATE_SCORE, mScore);
-                        setResult(RESULT_OK, intent);
-                        finish();
-                    }
-                })
-                .setCancelable(false)
-                .create()
-                .show();
+        if (TypeActivity.compet) {
+            ScoreActivity.setmScoreJ1(mScore);
+            ScoreActivity.addmScoreTotJ1();
+            this.finish();
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setTitle("Bien joue!")
+                    .setMessage("Ton score est de " + mScore + "/" + mNumberOfQuestionsInitial)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // End the activity
+                            Intent intent = new Intent();
+                            intent.putExtra(BUNDLE_STATE_SCORE, mScore);
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        }
+                    })
+                    .setCancelable(false)
+                    .create()
+                    .show();
+        }
     }
 
     private void displayQuestion(final Question question) {
@@ -165,7 +171,7 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
 
     private QuestionBank generateQuestions() {
         Question question1 = new Question("Combien font 4x8?",
-                Arrays.asList("20", "26", "32","44"),
+                Arrays.asList("20", "26", "32", "44"),
                 2);
 
         Question question2 = new Question("L'Europe est composée de combien de pays ?",

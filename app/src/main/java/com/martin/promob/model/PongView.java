@@ -19,6 +19,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.martin.promob.R;
+import com.martin.promob.ScoreActivity;
+import com.martin.promob.TypeActivity;
 
 import java.util.Random;
 
@@ -349,6 +351,11 @@ public class PongView extends SurfaceView implements Runnable {
         return true;
     }
     public void endgame(){
+
+        if(TypeActivity.compet){
+            ScoreActivity.setmScoreJ1(mScore);
+            ScoreActivity.addmScoreTotJ1();
+        }
         final Activity act = (Activity) this.getContext();
         act.finish();
 

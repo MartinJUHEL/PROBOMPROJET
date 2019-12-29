@@ -17,6 +17,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.martin.promob.R;
+import com.martin.promob.ScoreActivity;
+import com.martin.promob.TypeActivity;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -163,6 +165,10 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void lose() {
         if (life == 0) {
+            if(TypeActivity.compet){
+                ScoreActivity.setmScoreJ1((int) ((chrono / 30)/10));
+                ScoreActivity.addmScoreTotJ1();
+            }
             final Activity act = (Activity) this.getContext();
 
             act.finish();
