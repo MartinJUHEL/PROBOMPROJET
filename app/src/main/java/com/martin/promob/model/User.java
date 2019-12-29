@@ -16,12 +16,12 @@ public class User {
 
 
     //Map de jeu,score dans chaque jeu
-    private Map<String, ArrayList<Integer>> scores;
+    private ArrayList<Integer> scores;
 
     public User(String userLogin){
         this.userLogin=userLogin;
         ArrayList<Integer> score=new ArrayList<>();
-        this.scores=new HashMap<>();
+        this.scores=new ArrayList<>();
     }
 
     public String getFirstname() {
@@ -39,15 +39,10 @@ public class User {
                 '}';
     }
 
-    public void addScore(String jeu,Integer score){
-        if(scores.containsKey(jeu)){
-            scores.get(jeu).add(score);
-        }else{
-            ArrayList<Integer> l =new ArrayList<>();
-            l.add(score);
-            scores.put(jeu,l);
-            Collections.sort(scores.get(jeu), Collections.reverseOrder());
+    public void addScore(Integer score){
+            scores.add(score);
+            Collections.sort(scores, Collections.reverseOrder());
 
-        }
+
     }
 }

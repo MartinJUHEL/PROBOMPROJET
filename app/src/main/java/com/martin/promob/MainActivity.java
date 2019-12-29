@@ -3,6 +3,7 @@ package com.martin.promob;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -10,6 +11,7 @@ import android.widget.ScrollView;
 
 import com.martin.promob.model.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +25,7 @@ public class MainActivity extends Activity {
 
 
     private static Map<String, User> mUser;
+    private static ArrayList<Pair<Integer, User>> mScores;
     private static User currentUser;
     private static User currentUser2;
     private static boolean multi;
@@ -35,16 +38,17 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mUser=new HashMap<>();
-        currentUser=null;
-        currentUser2=null;
+        mUser = new HashMap<>();
+        mScores = new ArrayList<>();
+        currentUser = null;
+        currentUser2 = null;
 
-        multi=false;
+        multi = false;
 
-        scoreSolo=findViewById(R.id.soloclassement);
-        scoreMulti=findViewById(R.id.multiclassement);
+        scoreSolo = findViewById(R.id.soloclassement);
+        scoreMulti = findViewById(R.id.multiclassement);
 
-        classementView=findViewById(R.id.scroll_view_classement);
+        classementView = findViewById(R.id.scroll_view_classement);
 
         // On récupère le bouton pour cacher/afficher le menu
         classementbutton = findViewById(R.id.buttonclassement);
@@ -60,14 +64,13 @@ public class MainActivity extends Activity {
         classementSlider.setToHide(toHide);
 
 
-
     }
 
     public void onePlayer(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
         Button oneplayer = (Button) findViewById(R.id.onePlayerButton);
         String type = oneplayer.getText().toString();
-        multi=false;
+        multi = false;
         startActivity(intent);
     }
 
@@ -75,7 +78,7 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, LoginActivity.class);
         Button multiplayerButton = (Button) findViewById(R.id.multiplayerButton);
         String type = multiplayerButton.getText().toString();
-        multi=true;
+        multi = true;
         startActivity(intent);
     }
 
@@ -92,7 +95,7 @@ public class MainActivity extends Activity {
     }
 
     public static void setCurrentUser(User user) {
-         currentUser = user;
+        currentUser = user;
     }
 
     public static void setCurrentUser2(User user) {
@@ -109,5 +112,30 @@ public class MainActivity extends Activity {
         return mUser;
     }
 
+    public static ArrayList<Pair<Integer, User>> getmScores() {
+        return mScores;
+    }
+
+    public static void addScore(int score, User user) {
+        boolean insere = false;
+        Pair p = new Pair(score, user);
+        for (int i = 0; i < mScores.size(); i++) {
+            if ((score >= mScores.get(i).first)&& !insere) {
+                mScores.add(i, p);
+                insere = true;
+            }
+        }
+        if (!insere) {
+            mScores.add(p);
+        }
+    }
+
+    public String showScore(){
+        String s="";
+        for (Pair p:mScores) {
+            s+= p.second +" : "+p.first+"\n";
+        }
+        return s;
+    }
 
 }
