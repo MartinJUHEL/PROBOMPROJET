@@ -21,11 +21,15 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.martin.promob.R;
 import com.martin.promob.ScoreActivity;
+import com.martin.promob.TrainingActivity;
 import com.martin.promob.TypeActivity;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import static com.martin.promob.QuizzActivity.BUNDLE_STATE_SCORE;
+
 public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
 
     private EscapeMissile missile;
@@ -44,6 +48,7 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
     private static final int MAX_STREAMS = 100;
     private final List<Explosion> explosionList = new ArrayList<Explosion>();
 
+    public int score;
 
     public EscapeView(Context context, int x, int y) {
         super(context);
@@ -141,25 +146,25 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void lose() {
 
-        final Activity act = (Activity) this.getContext();
 
         if (life == 0) {
 
-            int score = (int) ((chrono / 30)/10);
+            score = (int) ((chrono / 30) / 10);
             System.out.println("valeur de life " + life);
             escapeThread.setRunning(false);
+            final Activity act = (Activity) this.getContext();
 
-            if(TypeActivity.compet){
+            if (TypeActivity.compet) {
                 ScoreActivity.setmScoreJ1(score);
                 ScoreActivity.addmScoreTotJ1();
                 act.finish();
-            }
-            else{
+            } else {
                 act.finish();
-            }
 
+            }
         }
     }
+
     public void touch() {
         if (System.currentTimeMillis() - tpstouch >= 1500) {
             life -= 1;
