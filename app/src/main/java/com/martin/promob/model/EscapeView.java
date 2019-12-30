@@ -164,14 +164,21 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void lose() {
+        System.out.println("Valeur de life "+ life);
+
         if (life == 0) {
-            if(TypeActivity.compet){
-                ScoreActivity.setmScoreJ1((int) ((chrono / 30)/10));
+            if (TypeActivity.compet) {
+                int score = (int) ((chrono / 30) / 10);
+                System.out.println("score du jeu escape " + score);
+                ScoreActivity.setmScoreJ1(score);
                 ScoreActivity.addmScoreTotJ1();
             }
             final Activity act = (Activity) this.getContext();
 
             act.finish();
+        }
+        else{
+
         }
     }
 
