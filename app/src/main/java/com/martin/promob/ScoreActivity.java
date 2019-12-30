@@ -1,11 +1,13 @@
 package com.martin.promob;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -25,6 +27,8 @@ public class ScoreActivity extends AppCompatActivity {
 
     private TextView scorej1View;
     private TextView scorej1TotView;
+    private TextView scorej2View;
+    private TextView scorej2TotView;
 
 
     @Override
@@ -34,10 +38,22 @@ public class ScoreActivity extends AppCompatActivity {
 
         scorej1View = findViewById(R.id.textView_scoretemp);
         scorej1TotView = findViewById(R.id.textView_scoretotal);
+        scorej2View = findViewById(R.id.textView_scoretemp2);
+        scorej2TotView = findViewById(R.id.textView_scoretotal2);
 
         scorej1View.setText("Score : " + mScoreJ1);
         scorej1TotView.setText("Score total : " + mScoreTotJ1);
+        scorej2View.setText("Score : " + mScoreJ1);
+        scorej2TotView.setText("Score total : " + mScoreTotJ1);
 
+
+        if (!MainActivity.isMulti()) {
+            scorej2View.setActivated(false);
+            scorej2View.setVisibility(View.INVISIBLE);
+            scorej2TotView.setActivated(false);
+            scorej2TotView.setVisibility(View.INVISIBLE);
+
+        }
     }
 
     @Override
@@ -69,12 +85,38 @@ public class ScoreActivity extends AppCompatActivity {
 
         //Si c'est la fin de la compétition
         if (numberActivity == 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setTitle("Fin de la partie!");
+            if(MainActivity.isMulti()){
+                builder.setMessage("Le score du joueur 1 est de " + mScoreTotJ1);
+                builder.setMessage("Le score du joueur 2 est de "+ mScoreTotJ2);
+
+                //si c'est en mode multijoueur il faut afficher les deux scores
+            }
+            else{
+
+                builder.setMessage("Ton score est de " + mScoreTotJ1);
+
+            }
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // End the activity
+                    Intent intent = new Intent();
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+            })
+                    .setCancelable(false)
+                    .create()
+                    .show();
 
             // creer fonction endgame
 
         } else {
             numberActivity--;
-            final int game = new Random().nextInt(list.size() - 1);
+            final int game = new Random().nextInt(list.size());
 
             Intent intent;
 
