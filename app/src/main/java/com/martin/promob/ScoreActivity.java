@@ -69,8 +69,7 @@ public class ScoreActivity extends AppCompatActivity {
 
         //Si c'est la fin de la compétition
         if (numberActivity == 0) {
-
-            // creer fonction endgame
+endgame();
 
         } else {
             numberActivity--;
@@ -125,5 +124,13 @@ public class ScoreActivity extends AppCompatActivity {
         ScoreActivity.mScoreTotJ2 += mScoreJ2;
     }
 
-
+    public void endgame() {
+        if (MainActivity.isMulti()) {
+            MainActivity.addMultiScore(mScoreTotJ1,MainActivity.getCurrentUser());
+        }
+        else{
+            MainActivity.addSoloScore(mScoreTotJ1,MainActivity.getCurrentUser());
+        }
+        this.finish();
+    }
 }
