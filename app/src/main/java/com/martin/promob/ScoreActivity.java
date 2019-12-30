@@ -112,6 +112,7 @@ public class ScoreActivity extends AppCompatActivity {
                     .create()
                     .show();
 
+            endgame();
             // creer fonction endgame
 
         } else {
@@ -167,5 +168,13 @@ public class ScoreActivity extends AppCompatActivity {
         ScoreActivity.mScoreTotJ2 += mScoreJ2;
     }
 
-
+    public void endgame() {
+        if (MainActivity.isMulti()) {
+            MainActivity.addMultiScore(mScoreTotJ1,MainActivity.getCurrentUser());
+        }
+        else{
+            MainActivity.addSoloScore(mScoreTotJ1,MainActivity.getCurrentUser());
+        }
+        this.finish();
+    }
 }

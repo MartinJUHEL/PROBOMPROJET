@@ -139,7 +139,7 @@ public class MainActivity extends Activity {
 
     public static void addSoloScore(int score, User user) {
         boolean insere = false;
-        Pair p = new Pair(score, user);
+        Pair p = new Pair(score, user.getFirstname());
         user.addScore(score);
         for (int i = 0; i < soloScores.size(); i++) {
             if ((score >= soloScores.get(i).first)&& !insere) {
@@ -162,7 +162,7 @@ public class MainActivity extends Activity {
 
     public static void addMultiScore(int score, User user) {
         boolean insere = false;
-        Pair p = new Pair(score, user);
+        Pair p = new Pair(score, user.getFirstname());
         user.addScore(score);
         for (int i = 0; i < multiScores.size(); i++) {
             if ((score >= multiScores.get(i).first)&& !insere) {

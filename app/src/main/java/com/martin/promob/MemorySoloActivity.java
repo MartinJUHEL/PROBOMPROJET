@@ -112,7 +112,7 @@ public class MemorySoloActivity extends AppCompatActivity implements View.OnClic
                                     memoryadapter.notifyDataSetChanged();
                                     nbCardDiscover = 0;
                                 }
-                            }, 1000);
+                            }, 500);
                         }
                         if (nbCardDiscover == 0) {
                             card.setDiscover(true);
