@@ -25,4 +25,5 @@
     <string name="button_solo_classement">Solo ranking</string>
     <string name="button_multi_classement">Multiplayer ranking</string>
     <string name="button_next">Next</string>
+    <string name="button_joueur2">Player 2</string>
 </resources>

@@ -155,8 +155,13 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
             final Activity act = (Activity) this.getContext();
 
             if (TypeActivity.compet) {
-                ScoreActivity.setmScoreJ1(score);
-                ScoreActivity.addmScoreTotJ1();
+                if(ScoreActivity.isJoueur1end()){
+                    ScoreActivity.setmScoreJ2(score);
+                    ScoreActivity.addmScoreTotJ2();
+                }else{
+                    ScoreActivity.setmScoreJ1(score);
+                    ScoreActivity.addmScoreTotJ1();
+                }
                 act.finish();
             } else {
                 act.finish();
