@@ -47,6 +47,7 @@
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="@android:dimen/notification_large_icon_width"
         android:layout_marginTop="24dp"
+        android:onClick="OnclickJustePrix"
         android:text="@string/button_game5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
