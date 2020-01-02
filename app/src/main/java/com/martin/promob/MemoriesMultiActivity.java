@@ -61,8 +61,8 @@ public class MemoriesMultiActivity extends AppCompatActivity implements View.OnC
         imJBleu = findViewById(R.id.imagebleu);
 
         //Recupérer les joueurs
-        jBleu = "jbleu";
-        jRouge = "jrouge";
+        jBleu = MainActivity.getCurrentUser().getFirstname();
+        jRouge = MainActivity.getCurrentUser2().getFirstname();
 
         imJBleu.setImageResource(R.drawable.noir);
         imJRouge.setImageResource(R.drawable.rouge);
@@ -198,11 +198,13 @@ public class MemoriesMultiActivity extends AppCompatActivity implements View.OnC
         if (TypeActivity.compet) {
             ScoreActivity.setmScoreJ1(scoreBleu);
             ScoreActivity.addmScoreTotJ1();
+            ScoreActivity.setmScoreJ2(scoreRouge);
+            ScoreActivity.addmScoreTotJ2();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             builder.setTitle("Well done!")
-                    .setMessage("The winners is " + gagnant + "\n Red score = " + scoreRouge + "\n Blue score =" + scoreBleu)
+                    .setMessage("The winners is " + gagnant + "\n" + jRouge + " : " + scoreRouge + "\n" + jBleu + " : " + scoreBleu)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

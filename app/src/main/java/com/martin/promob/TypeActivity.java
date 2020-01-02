@@ -3,6 +3,7 @@ package com.martin.promob;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,11 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 public class TypeActivity extends AppCompatActivity {
 
     public static boolean compet;
+    private Button trainingButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type);
+
+        trainingButton = findViewById(R.id.button_training);
 
         compet = false;
 
@@ -25,6 +29,10 @@ public class TypeActivity extends AppCompatActivity {
         if (MainActivity.isMulti()) {
             TextView textJ2 = findViewById(R.id.textView);
             textJ2.setText(MainActivity.getCurrentUser2().getFirstname());
+
+            trainingButton.setActivated(false);
+            trainingButton.setVisibility(View.INVISIBLE);
+
         }
     }
 
