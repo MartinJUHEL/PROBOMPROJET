@@ -97,10 +97,6 @@ public class ScoreActivity extends AppCompatActivity {
         list.add(MemorySoloActivity.class);
 
         list2 = new ArrayList<Class>();
-        list2.add(QuizzActivity.class);
-        list2.add(EscapeActivity.class);
-        list2.add(PongActivity.class);
-        list2.add(MemorySoloActivity.class);
 
         joueur1end = false;
 
@@ -164,6 +160,7 @@ public class ScoreActivity extends AppCompatActivity {
 
             intent = new Intent(this, list.get(game));
 
+            list2.add(list.get(game));
             list.remove(game);
             startActivity(intent);
         }
@@ -182,6 +179,7 @@ public class ScoreActivity extends AppCompatActivity {
         next.setActivated(false);
         next.setVisibility(View.INVISIBLE);
 
+        System.out.println(list2.toString());
 
         mScoreJ2=0;
 
@@ -222,13 +220,12 @@ public class ScoreActivity extends AppCompatActivity {
         }
         else {
             numberActivity2--;
-            int game2 = new Random().nextInt(list2.size());
 
             Intent intent;
 
-            intent = new Intent(this, list2.get(game2));
+            intent = new Intent(this, list2.get(0));
 
-            list2.remove(game2);
+            list2.remove(0);
             startActivity(intent);
         }
 

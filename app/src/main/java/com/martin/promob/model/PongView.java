@@ -179,7 +179,6 @@ public class PongView extends SurfaceView implements Runnable {
             long startFrameTime = System.currentTimeMillis();
 
             // Update the frame
-            // Update the frame
             if (!mPaused) {
                 update();
             }
@@ -352,7 +351,10 @@ public class PongView extends SurfaceView implements Runnable {
     }
     public void endgame(){
 
-        if(TypeActivity.compet){
+        if(ScoreActivity.isJoueur1end()){
+            ScoreActivity.setmScoreJ2(mScore);
+            ScoreActivity.addmScoreTotJ2();
+        }else{
             ScoreActivity.setmScoreJ1(mScore);
             ScoreActivity.addmScoreTotJ1();
         }

@@ -137,8 +137,14 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
     private void endGame() {
 
         if (TypeActivity.compet) {
-            ScoreActivity.setmScoreJ1(mScore);
-            ScoreActivity.addmScoreTotJ1();
+            if(ScoreActivity.isJoueur1end()){
+                ScoreActivity.setmScoreJ2(mScore);
+                ScoreActivity.addmScoreTotJ2();
+            }else{
+                ScoreActivity.setmScoreJ1(mScore);
+                ScoreActivity.addmScoreTotJ1();
+            }
+
             this.finish();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);

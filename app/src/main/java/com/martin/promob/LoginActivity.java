@@ -13,6 +13,7 @@ public class LoginActivity extends Activity {
 
     EditText editTextj1;
     EditText editTextj2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
