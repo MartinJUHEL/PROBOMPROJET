@@ -48,7 +48,6 @@ public class LoginActivity extends Activity {
         }
 
         if(MainActivity.isMulti()) {
-            System.out.println("Multi");
             String user2 = editTextj2.getText().toString();
 
             if (MainActivity.getmUser().containsKey(user2)) {

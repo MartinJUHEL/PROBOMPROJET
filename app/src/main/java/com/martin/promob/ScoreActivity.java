@@ -47,6 +47,7 @@ public class ScoreActivity extends AppCompatActivity {
 
         scorej1View = findViewById(R.id.textView_scoretemp);
         scorej1TotView = findViewById(R.id.textView_scoretotal);
+
         scorej2View = findViewById(R.id.textView_scoretemp2);
         scorej2TotView = findViewById(R.id.textView_scoretotal2);
 
@@ -179,8 +180,6 @@ public class ScoreActivity extends AppCompatActivity {
         next.setActivated(false);
         next.setVisibility(View.INVISIBLE);
 
-        System.out.println(list2.toString());
-
         mScoreJ2=0;
 
         if (numberActivity2 == 0) {
@@ -247,6 +246,7 @@ public class ScoreActivity extends AppCompatActivity {
     public void setView(View view){
         viewI=view;
     }
+
     public static void setmScoreJ1(int mScoreJ1) {
         ScoreActivity.mScoreJ1 = mScoreJ1;
     }

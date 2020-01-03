@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScoreActivity"></activity>
+        <activity android:name=".JustePrixActivity"></activity>
+        <activity android:name=".ScoreActivity" />
         <activity
             android:name=".TrainingActivity"
             android:parentActivityName=".TypeActivity">
@@ -42,7 +43,6 @@
         </activity>
         <activity android:name=".MemoriesMultiActivity" />
         <activity android:name=".MemorySoloActivity" />
-
         <activity android:name=".EscapeActivity" />
         <activity android:name=".QuizzActivity" />
         <activity android:name=".PongActivity" />

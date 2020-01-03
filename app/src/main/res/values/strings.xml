@@ -2,11 +2,8 @@
     <string name="app_name">PROMOB</string>
     <string name="button_send">Send</string>
     <string name="button_compet">Competition</string>
-    <string name="button_game1">Game 1</string>
-    <string name="button_game2">Game 2</string>
-    <string name="button_game3">Game 3</string>
     <string name="button_game4">Pong Ball</string>
-    <string name="button_game5">Game 5</string>
+    <string name="button_game5">Juste Prix</string>
     <string name="button_game6">Game 6</string>
     <string name="button_multiplayer">Multiplayer</string>
     <string name="button_one_player">Solo</string>
@@ -26,4 +23,8 @@
     <string name="button_multi_classement">Multiplayer ranking</string>
     <string name="button_next">Next</string>
     <string name="button_joueur2">Player 2</string>
+    <string name="Text_SaisirNombre">Enter a number between 1 and 100</string>
+    <string name="Button_compare">Compare</string>
+    <string name="ResaisirJustePrixPlusGrand">Enter a higher number again</string>
+    <string name="ResaisirJustePrixPlusPetit">Enter a lower number again</string>
 </resources>

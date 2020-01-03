@@ -150,7 +150,6 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
         if (life == 0) {
 
             score = (int) ((chrono / 30) / 10);
-            System.out.println("valeur de life " + life);
             escapeThread.setRunning(false);
             final Activity act = (Activity) this.getContext();
 

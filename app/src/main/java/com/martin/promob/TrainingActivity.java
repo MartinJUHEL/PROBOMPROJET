@@ -38,6 +38,11 @@ public class TrainingActivity extends AppCompatActivity {
 
     }
 
+    public void OnclickJustePrix(View view){
+        Intent startJustePrix = new Intent(this, JustePrixActivity.class );
+        startActivity(startJustePrix);
+    }
+
 
 
 
