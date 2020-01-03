@@ -52,17 +52,20 @@ public class ScoreActivity extends AppCompatActivity {
         showPlayer = findViewById(R.id.textview_showplayer);
 
         scorej1View.setText("Score " + MainActivity.getCurrentUser().getFirstname() + " : " + mScoreJ1);
-        scorej1TotView.setText("Total " + MainActivity.getCurrentUser2().getFirstname() + " : " + mScoreTotJ1);
+        scorej1TotView.setText("Total " + MainActivity.getCurrentUser().getFirstname() + " : " + mScoreTotJ1);
 
-        scorej2View.setText("Score " + MainActivity.getCurrentUser().getFirstname() + " : " + mScoreJ2);
-        scorej2TotView.setText("Total " + MainActivity.getCurrentUser2().getFirstname() + " : " + mScoreTotJ2);
 
+        //mode solo on cache les scores du joueur 2
         if (!MainActivity.isMulti()) {
             scorej2View.setActivated(false);
             scorej2View.setVisibility(View.INVISIBLE);
             scorej2TotView.setActivated(false);
             scorej2TotView.setVisibility(View.INVISIBLE);
 
+            //mode multi
+        }else {
+            scorej2View.setText("Score " + MainActivity.getCurrentUser2().getFirstname() + " : " + mScoreJ2);
+            scorej2TotView.setText("Total " + MainActivity.getCurrentUser2().getFirstname() + " : " + mScoreTotJ2);
         }
 
         showPlayer.setTextColor(Color.RED);
@@ -75,21 +78,20 @@ public class ScoreActivity extends AppCompatActivity {
         scorej1View.setText("Score " + MainActivity.getCurrentUser().getFirstname() + " : " + mScoreJ1);
         scorej1TotView.setText("Total " + MainActivity.getCurrentUser().getFirstname() + " : " + mScoreTotJ1);
 
-        scorej2View.setText("Score " + MainActivity.getCurrentUser2().getFirstname() + " : " + mScoreJ2);
-        scorej2TotView.setText("Total " + MainActivity.getCurrentUser2().getFirstname() + " : " + mScoreTotJ2);
+        if(MainActivity.isMulti()){
+            scorej2View.setText("Score " + MainActivity.getCurrentUser2().getFirstname() + " : " + mScoreJ2);
+            scorej2TotView.setText("Total " + MainActivity.getCurrentUser2().getFirstname() + " : " + mScoreTotJ2);
+        }
 
-        if(debut){
-            showPlayer.setText(MainActivity.getCurrentUser().getFirstname()+" c'est à toi de commencer");
-        }else{
-            if(joueur1end){
+
+        if(!joueur1end){
                 showPlayer.setText(MainActivity.getCurrentUser2().getFirstname()+" c'est à toi de jouer");
-            }else{
+        }else{
                 showPlayer.setText(MainActivity.getCurrentUser().getFirstname()+" c'est à toi de jouer");
 
             }
         }
 
-    }
 
     public static void initialise() {
         mScoreJ1 = 0;
@@ -104,19 +106,19 @@ public class ScoreActivity extends AppCompatActivity {
         list.add(PongActivity.class);
         if (MainActivity.isMulti()) {
             list.add(MemoriesMultiActivity.class);
+            list.add(JustePrixMultiActivity.class);
 
         } else {
             list.add(MemorySoloActivity.class);
+            list.add(JustePrixActivity.class);
 
         }
-        debut=true;
-        joueur1end = true;
+        joueur1end = true; //signifie que le joueur 1 joue
 
     }
 
     //Si le joueur joue en solo
     public void playSolo() {
-        numberActivity--;
         if (numberActivity == 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -178,20 +180,23 @@ public class ScoreActivity extends AppCompatActivity {
             endgame();
 
         } else {
-            //On change de joueur (j1 devient j2 ou j2 devient j1)
-            setJoueur1end(!joueur1end);
             //Si le jeu est un jeux multijoueur de base alors ça sera encore au joueur 1 de jouer
-            if (currentGame == MemoriesMultiActivity.class) {
+            if (currentGame == MemoriesMultiActivity.class || currentGame ==JustePrixMultiActivity.class) {
                 numberActivity--;
-                joueur1end = false;
+
+            }else{
+                //On fait jouer le bon joueur
+                if (joueur1end) {
+                    playj1();
+                    setJoueur1end(false);
+                } else {
+                    playj2();
+                    setJoueur1end(true);
+                }
+                //On change de joueur (j1 devient j2 ou j2 devient j1)
+                //setJoueur1end(!joueur1end);
             }
 
-//On fait jouer le bon joueur
-            if (joueur1end) {
-                playj2();
-            } else {
-                playj1();
-            }
 
         }
     }
@@ -221,7 +226,6 @@ public class ScoreActivity extends AppCompatActivity {
         next = findViewById(R.id.button_next);
         mScoreJ1 = 0;
         mScoreJ2 = 0;
-        debut=false;
         if (MainActivity.isMulti()) {
             playMulti();
         } else {

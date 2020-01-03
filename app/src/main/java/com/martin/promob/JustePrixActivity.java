@@ -35,7 +35,7 @@ public class JustePrixActivity extends AppCompatActivity {
         txtNumber = findViewById(R.id.txtNumber);
         resultat = findViewById(R.id.lblResult);
         history = findViewById(R.id.lblHistory);
-        pgbScore = findViewById(R.id.pgbScore);
+        pgbScore = findViewById(R.id.pgbNumberAct);
 
 
         init();
@@ -53,6 +53,7 @@ public class JustePrixActivity extends AppCompatActivity {
         resultat.setText(""); //pas de resultat au debut
         history.setText(""); //pas d'historique de recherche au debut
         pgbScore.setProgress(mScore);
+        pgbScore.setMax(7);
 
         txtNumber.requestFocus(); // ouvre directement le clavier pour saisir la valeur
 
@@ -67,9 +68,6 @@ public class JustePrixActivity extends AppCompatActivity {
         if(txtRecup.equals("")){ return;} //si la chaine recup est vide on fait rien
 
         int nombreRecup = Integer.parseInt(txtRecup);
-
-        System.out.println("Score"+mScore);
-        System.out.println(mScore>0);
 
 
         if(mScore>0){
@@ -99,11 +97,14 @@ public class JustePrixActivity extends AppCompatActivity {
 
                 if(nombreRecup>justeprix){
                     resultat.setText(R.string.ResaisirJustePrixPlusPetit);
+
                 }
                 else{
                     resultat.setText(R.string.ResaisirJustePrixPlusGrand);
 
                 }
+                txtNumber.setText("");
+
 
             }
         }

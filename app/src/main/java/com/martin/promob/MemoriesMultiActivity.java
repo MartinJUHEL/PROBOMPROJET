@@ -67,8 +67,8 @@ public class MemoriesMultiActivity extends AppCompatActivity implements View.OnC
         imJBleu.setImageResource(R.drawable.noir);
         imJRouge.setImageResource(R.drawable.rouge);
 
-        scoreJBleu.setText("Score: 0");
-        scoreJRouge.setText("Score: 0");
+        scoreJBleu.setText("Score " + MainActivity.getCurrentUser().getFirstname()+" : 0");
+        scoreJRouge.setText("Score " + MainActivity.getCurrentUser2().getFirstname()+" : 0");
 
 
         joueurCourant = jRouge;
@@ -155,12 +155,12 @@ public class MemoriesMultiActivity extends AppCompatActivity implements View.OnC
 
             if (joueurCourant == jRouge) {
                 scoreRouge++;
-                scoreJRouge.setText("Score: " + scoreRouge);
+                scoreJRouge.setText("Score " + MainActivity.getCurrentUser2().getFirstname()+" : " + scoreRouge);
 
             }
             if (joueurCourant == jBleu) {
                 scoreBleu++;
-                scoreJBleu.setText("Score: " + scoreBleu);
+                scoreJBleu.setText("Score " + MainActivity.getCurrentUser().getFirstname()+": " + scoreBleu);
 
             }
             if (scoreBleu + scoreRouge == nbPair) {

@@ -27,4 +27,5 @@
     <string name="Button_compare">Compare</string>
     <string name="ResaisirJustePrixPlusGrand">Enter a higher number again</string>
     <string name="ResaisirJustePrixPlusPetit">Enter a lower number again</string>
+    <string name="Text_EstimerLePrix">Estimate the price of this object</string>
 </resources>

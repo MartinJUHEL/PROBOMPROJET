@@ -43,6 +43,7 @@ public class TypeActivity extends AppCompatActivity {
     }
 
     public void competition(View view) {
+
         compet = true;
         ScoreActivity.initialise();
         Intent intent = new Intent(this, ScoreActivity.class);

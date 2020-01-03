@@ -62,7 +62,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ProgressBar
-        android:id="@+id/pgbScore"
+        android:id="@+id/pgbNumberAct"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="382dp"
         android:layout_height="wrap_content"
@@ -81,9 +81,9 @@
         android:id="@+id/lblHistory"
         android:layout_width="386dp"
         android:layout_height="585dp"
-        android:layout_below="@+id/pgbScore"
-        android:layout_alignEnd="@+id/pgbScore"
-        android:layout_alignRight="@+id/pgbScore"
+        android:layout_below="@+id/pgbNumberAct"
+        android:layout_alignEnd="@+id/pgbNumberAct"
+        android:layout_alignRight="@+id/pgbNumberAct"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"

@@ -28,4 +28,5 @@
     <string name="Button_compare">Comparer</string>
     <string name="ResaisirJustePrixPlusGrand">Saisir un nombre plus grand</string>
     <string name="ResaisirJustePrixPlusPetit">Saisir un nombre plus petit</string>
+    <string name="Text_EstimerLePrix">Estimer le prix de cet objet</string>
 </resources>
