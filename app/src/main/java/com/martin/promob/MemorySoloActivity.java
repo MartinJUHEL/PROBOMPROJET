@@ -172,14 +172,8 @@ public class MemorySoloActivity extends AppCompatActivity implements View.OnClic
 
 
         if (TypeActivity.compet) {
-            if(ScoreActivity.isJoueur1end()){
-                ScoreActivity.setmScoreJ2(score);
-                ScoreActivity.addmScoreTotJ2();
-            }else{
                 ScoreActivity.setmScoreJ1(score);
                 ScoreActivity.addmScoreTotJ1();
-            }
-
             this.finish();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
