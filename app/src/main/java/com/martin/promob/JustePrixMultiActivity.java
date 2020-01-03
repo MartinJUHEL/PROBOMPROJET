@@ -152,8 +152,7 @@ public class JustePrixMultiActivity extends AppCompatActivity {
         }
 
 
-        builder.setMessage("Le prix exacte était de "+ justeprix+"\n"
-                +" Joueur 2 "+score2 +" Joueur 1 "+score1);
+        builder.setMessage("Le prix exacte était de "+ justeprix);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

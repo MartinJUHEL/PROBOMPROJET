@@ -68,7 +68,7 @@ public class ScoreActivity extends AppCompatActivity {
             scorej2TotView.setText("Total " + MainActivity.getCurrentUser2().getFirstname() + " : " + mScoreTotJ2);
         }
 
-        showPlayer.setTextColor(Color.RED);
+        showPlayer.setTextColor(Color.BLACK);
 
     }
 
@@ -146,6 +146,16 @@ public class ScoreActivity extends AppCompatActivity {
 
     //Si le joueur joue en multi
     public void playMulti() {
+        System.out.println("nombre acti "+numberActivity);
+
+        if (currentGame == MemoriesMultiActivity.class || currentGame ==JustePrixMultiActivity.class) {
+            numberActivity--;
+            setJoueur1end(true);
+            currentGame=null;
+        }
+
+        System.out.println("nombre acti "+numberActivity);
+
         if (numberActivity == 0) {
             //Affichage du vainqueur
             String vainq;
@@ -182,10 +192,8 @@ public class ScoreActivity extends AppCompatActivity {
 
         } else {
             //Si le jeu est un jeux multijoueur de base alors ça sera encore au joueur 1 de jouer
-            if (currentGame == MemoriesMultiActivity.class || currentGame ==JustePrixMultiActivity.class) {
-                numberActivity--;
 
-            }else{
+
                 //On fait jouer le bon joueur
                 if (joueur1end) {
                     playj1();
@@ -196,7 +204,7 @@ public class ScoreActivity extends AppCompatActivity {
                 }
                 //On change de joueur (j1 devient j2 ou j2 devient j1)
                 //setJoueur1end(!joueur1end);
-            }
+
 
 
         }

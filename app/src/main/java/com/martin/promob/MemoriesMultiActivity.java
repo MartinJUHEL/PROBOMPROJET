@@ -159,7 +159,6 @@ public class MemoriesMultiActivity extends AppCompatActivity implements View.OnC
 
             }
             if (scoreBleu + scoreRouge == nbPair) {
-                System.out.println("Gagner");
                 if (scoreRouge <= scoreBleu) {
                     gagnant = jBleu;
                 } else {
@@ -175,13 +174,11 @@ public class MemoriesMultiActivity extends AppCompatActivity implements View.OnC
 
     public void changementJoueur() {
         if (joueurCourant == jRouge) {
-            System.out.println("Rouge");
             joueurCourant = jBleu;
             imJBleu.setImageResource(R.drawable.bleu);
             imJRouge.setImageResource(R.drawable.noir);
 
         } else {
-            System.out.println("Bleu");
             joueurCourant = jRouge;
             imJBleu.setImageResource(R.drawable.noir);
             imJRouge.setImageResource(R.drawable.rouge);
