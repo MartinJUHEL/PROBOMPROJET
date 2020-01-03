@@ -1,7 +1,5 @@
 package com.martin.promob;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +10,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.martin.promob.model.MemoryAdapter;
@@ -20,8 +17,6 @@ import com.martin.promob.model.MemoryCard;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-import static com.martin.promob.QuizzActivity.BUNDLE_STATE_SCORE;
 
 
 public class MemoriesMultiActivity extends AppCompatActivity implements View.OnClickListener {
@@ -67,8 +62,8 @@ public class MemoriesMultiActivity extends AppCompatActivity implements View.OnC
         imJBleu.setImageResource(R.drawable.noir);
         imJRouge.setImageResource(R.drawable.rouge);
 
-        scoreJBleu.setText("Score " + MainActivity.getCurrentUser().getFirstname()+" : 0");
-        scoreJRouge.setText("Score " + MainActivity.getCurrentUser2().getFirstname()+" : 0");
+        scoreJBleu.setText("Score " + MainActivity.getCurrentUser().getFirstname() + " : 0");
+        scoreJRouge.setText("Score " + MainActivity.getCurrentUser2().getFirstname() + " : 0");
 
 
         joueurCourant = jRouge;
@@ -155,12 +150,12 @@ public class MemoriesMultiActivity extends AppCompatActivity implements View.OnC
 
             if (joueurCourant == jRouge) {
                 scoreRouge++;
-                scoreJRouge.setText("Score " + MainActivity.getCurrentUser2().getFirstname()+" : " + scoreRouge);
+                scoreJRouge.setText("Score " + MainActivity.getCurrentUser2().getFirstname() + " : " + scoreRouge);
 
             }
             if (joueurCourant == jBleu) {
                 scoreBleu++;
-                scoreJBleu.setText("Score " + MainActivity.getCurrentUser().getFirstname()+": " + scoreBleu);
+                scoreJBleu.setText("Score " + MainActivity.getCurrentUser().getFirstname() + ": " + scoreBleu);
 
             }
             if (scoreBleu + scoreRouge == nbPair) {
@@ -194,31 +189,11 @@ public class MemoriesMultiActivity extends AppCompatActivity implements View.OnC
     }
 
     public void endgame() {
+        ScoreActivity.setmScoreJ1(scoreBleu);
+        ScoreActivity.addmScoreTotJ1();
+        ScoreActivity.setmScoreJ2(scoreRouge);
+        ScoreActivity.addmScoreTotJ2();
 
-        if (TypeActivity.compet) {
-            ScoreActivity.setmScoreJ1(scoreBleu);
-            ScoreActivity.addmScoreTotJ1();
-            ScoreActivity.setmScoreJ2(scoreRouge);
-            ScoreActivity.addmScoreTotJ2();
-        } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-            builder.setTitle("Well done!")
-                    .setMessage("The winners is " + gagnant + "\n" + jRouge + " : " + scoreRouge + "\n" + jBleu + " : " + scoreBleu)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            // End the activity
-                            Intent intent = new Intent();
-                            intent.putExtra(BUNDLE_STATE_SCORE, scoreBleu);
-                            setResult(RESULT_OK, intent);
-                            finish();
-                        }
-                    })
-                    .setCancelable(false)
-                    .create()
-                    .show();
-        }
         this.finish();
     }
 
