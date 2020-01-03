@@ -18,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.martin.promob.MainActivity;
 import com.martin.promob.R;
 import com.martin.promob.ScoreActivity;
 import com.martin.promob.TypeActivity;
@@ -351,16 +352,20 @@ public class PongView extends SurfaceView implements Runnable {
     }
     public void endgame(){
 
-        if(ScoreActivity.isJoueur1end()){
-            ScoreActivity.setmScoreJ2(mScore);
-            ScoreActivity.addmScoreTotJ2();
-        }else{
+        if (!MainActivity.isMulti()) {
             ScoreActivity.setmScoreJ1(mScore);
             ScoreActivity.addmScoreTotJ1();
+        } else {
+            if (ScoreActivity.isJoueur1end()) {
+                ScoreActivity.setmScoreJ2(mScore);
+                ScoreActivity.addmScoreTotJ2();
+            } else {
+                ScoreActivity.setmScoreJ1(mScore);
+                ScoreActivity.addmScoreTotJ1();
+            }
         }
         final Activity act = (Activity) this.getContext();
         act.finish();
-
     }
 
 

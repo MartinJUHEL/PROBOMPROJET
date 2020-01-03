@@ -138,6 +138,7 @@ public class ScoreActivity extends AppCompatActivity {
             endgame();
 
         } else {
+            numberActivity--;
             playj1();
         }
     }

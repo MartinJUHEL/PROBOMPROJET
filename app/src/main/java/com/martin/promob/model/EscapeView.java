@@ -1,8 +1,7 @@
 package com.martin.promob.model;
+
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -17,18 +16,14 @@ import android.os.Build;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import androidx.appcompat.app.AlertDialog;
-
+import com.martin.promob.MainActivity;
 import com.martin.promob.R;
 import com.martin.promob.ScoreActivity;
-import com.martin.promob.TrainingActivity;
 import com.martin.promob.TypeActivity;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import static com.martin.promob.QuizzActivity.BUNDLE_STATE_SCORE;
 
 public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -66,6 +61,7 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
         ball = new EscapeBall((SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE), context);
         this.initSoundPool();
     }
+
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         if (escapeThread.getState() == Thread.State.TERMINATED) {
@@ -74,11 +70,13 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
         escapeThread.setRunning(true);
         escapeThread.start();
     }
+
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         missile.resize(width, height); // on définit la taille de la balle selon la taille de l'écran
         ball.resize(width, height);
     }
+
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         boolean retry = true;
@@ -91,6 +89,7 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
             }
         }
     }
+
     public void update() {
         missile.moveWithCollisionDetection();
         ball.updateBall();
@@ -112,6 +111,7 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
         }
         lose();
     }
+
     public static boolean isCollisionDetected(Bitmap bitmap1, int x1, int y1,
                                               Bitmap bitmap2, int x2, int y2) {
         if (bitmap1 == null || bitmap2 == null) {
@@ -133,9 +133,11 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
         }
         return false;
     }
+
     private static boolean isFilled(int pixel) {
         return pixel != Color.TRANSPARENT;
     }
+
     private static Rect getCollisionBounds(Rect rect1, Rect rect2) {
         int left = Math.max(rect1.left, rect2.left);
         int top = Math.max(rect1.top, rect2.top);
@@ -154,17 +156,22 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
             final Activity act = (Activity) this.getContext();
 
             if (TypeActivity.compet) {
-                if(ScoreActivity.isJoueur1end()){
-                    ScoreActivity.setmScoreJ2(score);
-                    ScoreActivity.addmScoreTotJ2();
-                }else{
+
+                if (!MainActivity.isMulti()) {
                     ScoreActivity.setmScoreJ1(score);
                     ScoreActivity.addmScoreTotJ1();
+                } else {
+                    if (ScoreActivity.isJoueur1end()) {
+                        ScoreActivity.setmScoreJ2(score);
+                        ScoreActivity.addmScoreTotJ2();
+                    } else {
+                        ScoreActivity.setmScoreJ1(score);
+                        ScoreActivity.addmScoreTotJ1();
+                    }
                 }
                 act.finish();
             } else {
                 act.finish();
-
             }
         }
     }
@@ -178,6 +185,7 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
             tpstouch = System.currentTimeMillis();
         }
     }
+
     private void initSoundPool() {
         // With Android API >= 21.
         if (Build.VERSION.SDK_INT >= 21) {
@@ -208,6 +216,7 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
         // Load the sound explosion.wav into SoundPool
         this.soundIdExplosion = this.soundPool.load(this.getContext(), R.raw.explosion, 1);
     }
+
     public void playSoundExplosion() {
         if (this.soundPoolLoaded) {
             float leftVolumn = 0.8f;
@@ -216,6 +225,7 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
             int streamId = this.soundPool.play(this.soundIdExplosion, leftVolumn, rightVolumn, 1, 0, 1f);
         }
     }
+
     public void playSoundBackground() {
         if (this.soundPoolLoaded) {
             float leftVolumn = 0.8f;
@@ -224,6 +234,7 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
             int streamId = this.soundPool.play(this.soundIdBackground, leftVolumn, rightVolumn, 1, -1, 1f);
         }
     }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
