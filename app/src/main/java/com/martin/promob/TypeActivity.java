@@ -13,6 +13,11 @@ public class TypeActivity extends AppCompatActivity {
 
     public static boolean compet;
     private Button trainingButton;
+    private Button competButton;
+    private TextView textJ1;
+    private TextView textJ2;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,14 +25,21 @@ public class TypeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_type);
 
         trainingButton = findViewById(R.id.button_training);
+        trainingButton.getBackground().setAlpha(MainActivity.getOpacity());
+
+        competButton = findViewById(R.id.button_compet);
+        competButton.getBackground().setAlpha(MainActivity.getOpacity());
 
         compet = false;
 
-        TextView textJ1 = findViewById(R.id.textView2);
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundResource(R.drawable.background_type);
+
+        textJ1 = findViewById(R.id.textView2);
         textJ1.setText(MainActivity.getCurrentUser().getFirstname());
 
         if (MainActivity.isMulti()) {
-            TextView textJ2 = findViewById(R.id.textView);
+            textJ2 = findViewById(R.id.textView);
             textJ2.setText(MainActivity.getCurrentUser2().getFirstname());
 
             trainingButton.setActivated(false);

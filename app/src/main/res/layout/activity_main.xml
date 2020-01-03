@@ -5,6 +5,7 @@
     android:id="@+id/classementslider"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_main"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -95,6 +96,7 @@
             android:layout_marginBottom="24dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/button_setting_description"
+            android:background="#ffffff"
             android:scaleType="centerInside"
             android:src="@drawable/setting"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -109,6 +111,8 @@
             android:layout_marginEnd="16dp"
             android:onClick="onePlayer"
             android:text="@string/button_one_player"
+            android:textStyle="bold"
+            android:background="#ffffff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -123,6 +127,8 @@
             android:layout_marginEnd="16dp"
             android:onClick="multiPlayer"
             android:text="@string/button_multiplayer"
+            android:textStyle="bold"
+            android:background="#ffffff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -136,6 +142,7 @@
             android:layout_marginBottom="24dp"
             android:onClick="showClassement"
             android:text="@string/button_classement"
+            android:background="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

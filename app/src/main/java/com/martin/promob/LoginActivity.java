@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 
 import com.martin.promob.model.User;
 
@@ -13,6 +15,9 @@ public class LoginActivity extends Activity {
 
     EditText editTextj1;
     EditText editTextj2;
+    private Button send;
+
+    public static FrameLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +26,11 @@ public class LoginActivity extends Activity {
 
          editTextj1 =  findViewById(R.id.edit_user1);
          editTextj2 = findViewById(R.id.edit_user2);
+         send = findViewById(R.id.sendButton);
+         send.getBackground().setAlpha(MainActivity.getOpacity());
+
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundResource(R.drawable.background_login);
 
         if(!MainActivity.isMulti()) {
             editTextj2.setActivated(false);
@@ -35,8 +45,8 @@ public class LoginActivity extends Activity {
         Intent intent = new Intent(this, TypeActivity.class);
 
 
-        editTextj2.setActivated(false);
-        editTextj2.setVisibility(View.INVISIBLE);
+        //editTextj2.setActivated(false);
+        //editTextj2.setVisibility(View.INVISIBLE);
 
         String user1 = editTextj1.getText().toString();
 

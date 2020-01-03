@@ -146,15 +146,11 @@ public class ScoreActivity extends AppCompatActivity {
 
     //Si le joueur joue en multi
     public void playMulti() {
-        System.out.println("nombre acti "+numberActivity);
-
         if (currentGame == MemoriesMultiActivity.class || currentGame ==JustePrixMultiActivity.class) {
             numberActivity--;
             setJoueur1end(true);
             currentGame=null;
         }
-
-        System.out.println("nombre acti "+numberActivity);
 
         if (numberActivity == 0) {
             //Affichage du vainqueur
@@ -191,9 +187,6 @@ public class ScoreActivity extends AppCompatActivity {
             endgame();
 
         } else {
-            //Si le jeu est un jeux multijoueur de base alors ça sera encore au joueur 1 de jouer
-
-
                 //On fait jouer le bon joueur
                 if (joueur1end) {
                     playj1();
@@ -202,11 +195,6 @@ public class ScoreActivity extends AppCompatActivity {
                     playj2();
                     setJoueur1end(true);
                 }
-                //On change de joueur (j1 devient j2 ou j2 devient j1)
-                //setJoueur1end(!joueur1end);
-
-
-
         }
     }
 
@@ -214,9 +202,7 @@ public class ScoreActivity extends AppCompatActivity {
     public void playj1() {
 
         final int game = new Random().nextInt(list.size());
-
         Intent intent;
-
         intent = new Intent(this, list.get(game));
 
         currentGame = list.get(game);

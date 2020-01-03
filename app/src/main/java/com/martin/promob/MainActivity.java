@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -24,7 +25,8 @@ public class MainActivity extends Activity {
     private RelativeLayout toHide;
     private ScrollView classementView;
     private TextView classementTextView;
-
+    public  Button oneplayer;
+    private ImageButton setting;
 
     private static Map<String, User> mUser;
     private static ArrayList<Pair<Integer, User>> soloScores;
@@ -33,6 +35,8 @@ public class MainActivity extends Activity {
     private static User currentUser;
     private static User currentUser2;
     private static boolean multi;
+
+    private static int opacity;
 
 
     @Override
@@ -46,12 +50,18 @@ public class MainActivity extends Activity {
         currentUser = null;
         currentUser2 = null;
 
+        opacity =70;
+
         multi = false;
 
         classementView = findViewById(R.id.scroll_view_classement);
 
         // On récupère le bouton pour cacher/afficher le menu
         classementbutton = findViewById(R.id.buttonclassement);
+        classementbutton.getBackground().setAlpha(opacity);
+
+        setting = findViewById(R.id.settingButton);
+        setting.getBackground().setAlpha(opacity);
 
         // On récupère le layout principal
         classementSlider = findViewById(R.id.classementslider);
@@ -60,7 +70,8 @@ public class MainActivity extends Activity {
         toHide = findViewById(R.id.toHide);
         toHide.setVisibility(View.GONE);
 
-
+        Button oneplayer = (Button) findViewById(R.id.onePlayerButton);
+        oneplayer.getBackground().setAlpha(opacity);  // where a : 0..255 : 0=transparent, 255=fully opaque
 
         // On donne le menu au layout principal
         classementSlider.setToHide(toHide);
@@ -74,8 +85,7 @@ public class MainActivity extends Activity {
 
     public void onePlayer(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
-        Button oneplayer = (Button) findViewById(R.id.onePlayerButton);
-        String type = oneplayer.getText().toString();
+
         multi = false;
         startActivity(intent);
     }
@@ -181,6 +191,10 @@ public class MainActivity extends Activity {
             s+= p.second +" : "+p.first+"\n";
         }
         return s;
+    }
+
+    public static int getOpacity() {
+        return opacity;
     }
 
 }
