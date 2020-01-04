@@ -2,6 +2,7 @@ package com.martin.promob;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,9 @@ public class LoginActivity extends Activity {
     EditText editTextj2;
     private Button send;
 
+    //Pour la police star wars
+    Typeface fontbutton;
+
     public static FrameLayout layout;
 
     @Override
@@ -24,21 +28,30 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-         editTextj1 =  findViewById(R.id.edit_user1);
-         editTextj2 = findViewById(R.id.edit_user2);
-         send = findViewById(R.id.sendButton);
-         send.getBackground().setAlpha(MainActivity.getOpacity());
+        fontbutton = Typeface.createFromAsset(getAssets(), "fonts/SfDistantGalaxy-0l3d.ttf");
+
+
+        editTextj1 = findViewById(R.id.edit_user1);
+        editTextj2 = findViewById(R.id.edit_user2);
+        editTextj1.setTypeface(fontbutton);
+        editTextj2.setTypeface(fontbutton);
+
+
+        send = findViewById(R.id.sendButton);
+        send.getBackground().setAlpha(MainActivity.getOpacity());
+        send.setTypeface(fontbutton);
+
 
         View view = this.getWindow().getDecorView();
         view.setBackgroundResource(R.drawable.background_login);
 
-        if(!MainActivity.isMulti()) {
+        if (!MainActivity.isMulti()) {
             editTextj2.setActivated(false);
             editTextj2.setVisibility(View.INVISIBLE);
 
+
         }
     }
-
 
 
     public void sendMessage(View view) {
@@ -50,14 +63,14 @@ public class LoginActivity extends Activity {
 
         String user1 = editTextj1.getText().toString();
 
-        if(MainActivity.getmUser().containsKey(user1)){
+        if (MainActivity.getmUser().containsKey(user1)) {
             MainActivity.setCurrentUser(MainActivity.getmUser().get(user1));
-        }else{
-            MainActivity.getmUser().put(user1,new User(user1));
+        } else {
+            MainActivity.getmUser().put(user1, new User(user1));
             MainActivity.setCurrentUser(MainActivity.getmUser().get(user1));
         }
 
-        if(MainActivity.isMulti()) {
+        if (MainActivity.isMulti()) {
             String user2 = editTextj2.getText().toString();
 
             if (MainActivity.getmUser().containsKey(user2)) {

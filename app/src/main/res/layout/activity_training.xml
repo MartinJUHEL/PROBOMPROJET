@@ -4,61 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/starbackground"
     tools:context=".TrainingActivity">
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/memorybutton"
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="@android:dimen/notification_large_icon_width"
         android:layout_marginTop="24dp"
         android:onClick="OnclickMemory"
         android:text="@string/button_memory"
+        android:textColor="#FFD100"
+        android:textSize="@dimen/titre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button9" />
+        app:layout_constraintTop_toBottomOf="@+id/quizzbutton" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/escapebutton"
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="@android:dimen/notification_large_icon_width"
         android:layout_marginTop="24dp"
         android:onClick="OnclickEscape"
+        android:textColor="#FFD100"
+        android:textSize="@dimen/titre"
         android:text="@string/escape_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/memorybutton" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/pongballbutton"
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="@android:dimen/notification_large_icon_width"
         android:layout_marginTop="24dp"
         android:onClick="OnclickPong"
+        android:textColor="#FFD100"
+        android:textSize="@dimen/titre"
         android:text="@string/button_game4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/escapebutton" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/justeprixbutton"
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="@android:dimen/notification_large_icon_width"
         android:layout_marginTop="24dp"
         android:onClick="OnclickJustePrix"
+        android:textColor="#FFD100"
+        android:textSize="@dimen/titre"
         android:text="@string/button_game5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        app:layout_constraintTop_toBottomOf="@+id/pongballbutton" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/quizzbutton"
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="@android:dimen/notification_large_icon_height"
         android:layout_marginTop="16dp"
+        android:textColor="#FFD100"
+        android:textSize="@dimen/titre"
         android:onClick="OnclickQuizz"
         android:text="@string/button_quizz"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,19 +77,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="@android:dimen/thumbnail_height"
-        android:layout_height="@android:dimen/notification_large_icon_width"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="16dp"
-        android:onClick="OnclickMulti"
-        android:text="Jeu 6"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button8"
-        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

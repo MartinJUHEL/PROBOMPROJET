@@ -2,6 +2,8 @@ package com.martin.promob;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -25,7 +27,7 @@ public class MainActivity extends Activity {
     private RelativeLayout toHide;
     private ScrollView classementView;
     private TextView classementTextView;
-    public  Button oneplayer;
+    public Button oneplayer;
     private ImageButton setting;
 
     private static Map<String, User> mUser;
@@ -37,6 +39,9 @@ public class MainActivity extends Activity {
     private static boolean multi;
 
     private static int opacity;
+
+    //Pour la police star wars
+    Typeface fontbutton;
 
 
     @Override
@@ -50,18 +55,23 @@ public class MainActivity extends Activity {
         currentUser = null;
         currentUser2 = null;
 
-        opacity =70;
+        opacity = 70;
 
         multi = false;
+
+        fontbutton = Typeface.createFromAsset(getAssets(), "fonts/SfDistantGalaxy-0l3d.ttf");
 
         classementView = findViewById(R.id.scroll_view_classement);
 
         // On récupère le bouton pour cacher/afficher le menu
         classementbutton = findViewById(R.id.buttonclassement);
         classementbutton.getBackground().setAlpha(opacity);
+        classementbutton.setTypeface(fontbutton);
 
-        setting = findViewById(R.id.settingButton);
-        setting.getBackground().setAlpha(opacity);
+        Button classementbutton2=findViewById(R.id.buttonclassement2);
+        classementbutton2.getBackground().setAlpha(opacity);
+        classementbutton2.setTypeface(fontbutton);
+
 
         // On récupère le layout principal
         classementSlider = findViewById(R.id.classementslider);
@@ -70,16 +80,26 @@ public class MainActivity extends Activity {
         toHide = findViewById(R.id.toHide);
         toHide.setVisibility(View.GONE);
 
-        Button oneplayer = (Button) findViewById(R.id.onePlayerButton);
-        oneplayer.getBackground().setAlpha(opacity);  // where a : 0..255 : 0=transparent, 255=fully opaque
 
         // On donne le menu au layout principal
         classementSlider.setToHide(toHide);
 
-        classementTextView=findViewById(R.id.playerclassement_textview);
+        classementTextView = findViewById(R.id.playerclassement_textview);
+
+        Button oneplayer = (Button) findViewById(R.id.onePlayerButton);
+        oneplayer.setTypeface(fontbutton);
+
+        Button multiplayerButton = (Button) findViewById(R.id.multiplayerButton);
+        multiplayerButton.setTypeface(fontbutton);
+
+        Button scoreSolo = findViewById(R.id.soloclassement);
+        scoreSolo.getBackground().setAlpha(opacity);
+        scoreSolo.setTypeface(fontbutton);
 
 
-
+        Button scoremulti = findViewById(R.id.multiclassement);
+        scoremulti.getBackground().setAlpha(opacity);
+        scoremulti.setTypeface(fontbutton);
 
     }
 
@@ -92,18 +112,15 @@ public class MainActivity extends Activity {
 
     public void multiPlayer(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
-        Button multiplayerButton = (Button) findViewById(R.id.multiplayerButton);
         multi = true;
         startActivity(intent);
     }
 
-    public void soloRanking(View view){
-        Button scoreSolo = findViewById(R.id.soloclassement);
+    public void soloRanking(View view) {
         classementTextView.setText(showSoloScore());
     }
 
-    public void multiRanking(View view){
-        Button scoremulti = findViewById(R.id.multiclassement);
+    public void multiRanking(View view) {
         classementTextView.setText(showMultiScore());
     }
 
@@ -146,13 +163,12 @@ public class MainActivity extends Activity {
     }
 
 
-
     public static void addSoloScore(int score, User user) {
         boolean insere = false;
         Pair p = new Pair(score, user.getFirstname());
         user.addScore(score);
         for (int i = 0; i < soloScores.size(); i++) {
-            if ((score >= soloScores.get(i).first)&& !insere) {
+            if ((score >= soloScores.get(i).first) && !insere) {
                 soloScores.add(i, p);
                 insere = true;
             }
@@ -162,10 +178,10 @@ public class MainActivity extends Activity {
         }
     }
 
-    public String showSoloScore(){
-        String s="";
-        for (Pair p:soloScores) {
-            s+= p.second +" : "+p.first+"\n";
+    public String showSoloScore() {
+        String s = "";
+        for (Pair p : soloScores) {
+            s += p.second + " : " + p.first + "\n";
         }
         return s;
     }
@@ -175,7 +191,7 @@ public class MainActivity extends Activity {
         Pair p = new Pair(score, user.getFirstname());
         user.addScore(score);
         for (int i = 0; i < multiScores.size(); i++) {
-            if ((score >= multiScores.get(i).first)&& !insere) {
+            if ((score >= multiScores.get(i).first) && !insere) {
                 multiScores.add(i, p);
                 insere = true;
             }
@@ -185,10 +201,10 @@ public class MainActivity extends Activity {
         }
     }
 
-    public String showMultiScore(){
-        String s="";
-        for (Pair p:multiScores) {
-            s+= p.second +" : "+p.first+"\n";
+    public String showMultiScore() {
+        String s = "";
+        for (Pair p : multiScores) {
+            s += p.second + " : " + p.first + "\n";
         }
         return s;
     }

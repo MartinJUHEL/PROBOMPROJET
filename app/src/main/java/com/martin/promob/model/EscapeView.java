@@ -37,7 +37,6 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
     private int mScreenX, mScreenY;
     private Bitmap bgImg;
     private int soundIdExplosion;
-    private int soundIdBackground;
     private boolean soundPoolLoaded;
     private SoundPool soundPool;
     private static final int MAX_STREAMS = 100;
@@ -207,8 +206,6 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
                 soundPoolLoaded = true;
-                // Playing background sound.
-                playSoundBackground();
             }
         });
         // Load the sound background.mp3 into SoundPool
@@ -223,15 +220,6 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
             float rightVolumn = 0.8f;
             // Play sound explosion.wav
             int streamId = this.soundPool.play(this.soundIdExplosion, leftVolumn, rightVolumn, 1, 0, 1f);
-        }
-    }
-
-    public void playSoundBackground() {
-        if (this.soundPoolLoaded) {
-            float leftVolumn = 0.8f;
-            float rightVolumn = 0.8f;
-            // Play sound background.mp3
-            int streamId = this.soundPool.play(this.soundIdBackground, leftVolumn, rightVolumn, 1, -1, 1f);
         }
     }
 
