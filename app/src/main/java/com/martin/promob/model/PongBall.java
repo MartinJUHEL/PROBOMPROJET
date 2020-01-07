@@ -70,8 +70,8 @@ public class PongBall {
     // A score of over 20 is quite difficult
     // Reduce or increase 10 to make this easier or harder
     public void increaseVelocity(){
-        mXVelocity = mXVelocity + mXVelocity / 10;
-        mYVelocity = mYVelocity + mYVelocity / 10;
+        mXVelocity = mXVelocity + mXVelocity / 4;
+        mYVelocity = mYVelocity + mYVelocity /4;
     }
 
 
