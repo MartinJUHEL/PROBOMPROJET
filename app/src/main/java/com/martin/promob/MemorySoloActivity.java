@@ -133,12 +133,18 @@ public class MemorySoloActivity extends AppCompatActivity implements View.OnClic
     }
 
     public void memoryBank() {
-        lCard.add(new MemoryCard("Banane", R.drawable.banane));
-        lCard.add(new MemoryCard("Banane", R.drawable.banane));
-        lCard.add(new MemoryCard("Pomme", R.drawable.pomme));
-        lCard.add(new MemoryCard("Pomme", R.drawable.pomme));
-        lCard.add(new MemoryCard("Poire", R.drawable.poire));
-        lCard.add(new MemoryCard("Poire", R.drawable.poire));
+        //lCard.add(new MemoryCard("Robot6", R.drawable.robot6));
+        //lCard.add(new MemoryCard("Robot6", R.drawable.robot6));
+        //lCard.add(new MemoryCard("Robot5", R.drawable.robot5));
+        //lCard.add(new MemoryCard("Robot5", R.drawable.robot5));
+        //lCard.add(new MemoryCard("Robot4", R.drawable.robot4));
+        //lCard.add(new MemoryCard("Robot4", R.drawable.robot4));
+        lCard.add(new MemoryCard("Robot3", R.drawable.robot3));
+        lCard.add(new MemoryCard("Robot3", R.drawable.robot3));
+        lCard.add(new MemoryCard("Robot2", R.drawable.robot2));
+        lCard.add(new MemoryCard("Robot2", R.drawable.robot2));
+        lCard.add(new MemoryCard("Robot1", R.drawable.robot1));
+        lCard.add(new MemoryCard("Robot1", R.drawable.robot1));
         Collections.shuffle(lCard);
     }
 

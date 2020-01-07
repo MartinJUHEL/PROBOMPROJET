@@ -26,7 +26,6 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
     private Button answer1;
     private Button answer2;
     private Button answer3;
-    private Button answer4;
 
     private QuestionBank mQuestionBank;
     private Question mCurrentQuestion;
@@ -55,17 +54,14 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
         answer1 = (Button) findViewById(R.id.activity_game_answer1_btn);
         answer2 = (Button) findViewById(R.id.activity_game_answer2_btn);
         answer3 = (Button) findViewById(R.id.activity_game_answer3_btn);
-        answer4 = (Button) findViewById(R.id.activity_game_answer4_btn);
 
         answer1.setOnClickListener(this);
         answer2.setOnClickListener(this);
         answer3.setOnClickListener(this);
-        answer4.setOnClickListener(this);
 
         answer1.setTag(0);
         answer2.setTag(1);
         answer3.setTag(2);
-        answer4.setTag(3);
 
 
         mQuestionBank = this.generateQuestions();
@@ -176,37 +172,48 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
         answer1.setText(question.getChoiceList().get(0));
         answer2.setText(question.getChoiceList().get(1));
         answer3.setText(question.getChoiceList().get(2));
-        answer4.setText(question.getChoiceList().get(3));
     }
 
     private QuestionBank generateQuestions() {
-        Question question1 = new Question("Combien font 4x8?",
-                Arrays.asList("20", "26", "32", "44"),
-                2);
+        Question question1 = new Question("POURQUOI GEORGE LUCAS A T-IL COMMENCÉ PAR LES ÉPISODES IV, V ET VI ?",
+                Arrays.asList("Parce qu'il ne pensait pas réaliser toute la trilogie", "Parce qu'il la pensait plus commerciale", "Parce que c'est la seule qu'il a été autorisé à faire"),
+                1);
 
-        Question question2 = new Question("L'Europe est composée de combien de pays ?",
-                Arrays.asList("15", "24", "28", "32"),
-                2);
-
-        Question question3 = new Question("Quand fut le premier Homme sur la Lune ?",
-                Arrays.asList("1958", "1962", "1967", "1969"),
-                3);
-
-        Question question4 = new Question("Quelle est la capitale de la Roumanie ?",
-                Arrays.asList("Bucarest", "Warsaw", "Budapest", "Berlin"),
+        Question question2 = new Question("COMMENT SE NOMME LE PÈRE DE BOBA FETT ?",
+                Arrays.asList("Jango Fett", "Melo Fett", "Ango Fett"),
                 0);
 
-        Question question5 = new Question("Que fête-t-on le premier mai ?",
-                Arrays.asList("Le travail", "Le printemps", "Les mamans", "Le Beaujolais"),
+        Question question3 = new Question("A QUI A ÉTÉ CONFIÉ LEIA, FILLE DE ANAKIN SKYWALKER ET PADME AMIDALA ?",
+                Arrays.asList("Au Sénateur Organa et son épouse", "A la famille Solo", "A Ower Lars, fils de Shmi Skywalker"),
                 0);
 
-        Question question6 = new Question("Qui est l'inséparable compagnon de Titi ?",
-                Arrays.asList("Grosminet", "Toto", "Tac", "Tom"),
-                0);
+        Question question4 = new Question("COMMENT ANAKIN EST LIBÉRÉ DE SON STATUT D'ESCLAVE ?",
+                Arrays.asList("En étant acheté par Obi-Wan", "En gagnant la course de Boonta", "En se mariant avec Padme"),
+                1);
 
-        Question question7 = new Question("En quelle année, la V République est-elle rentrée en vigueur ?",
-                Arrays.asList("1878", "1905", "1958", "1962"),
+        Question question5 = new Question("SUR QUELLE PLANÈTE A GRANDI LUKE SKYWALKER ?",
+                Arrays.asList("Naboo", "Conruscant", "Tatooine"),
                 2);
+
+        Question question6 = new Question("QUEL EST LE NOM SITH DE PALPATINE ?",
+                Arrays.asList("Dark Sidious", "Dark Maul", "Dark Vador"),
+                0);
+
+        Question question7 = new Question("DE QUELLE ESPÈCE FAIT PARTIE JAR JAR BINKS ?",
+                Arrays.asList("Eworks", "Gungan", "Wookie"),
+                1);
+
+        Question question8 = new Question("DANS QUEL ÉPISODE PADME ET ANAKIN SE MARIENT-ILS EN SECRET ?",
+                Arrays.asList("La menace fantôme", "L'attaque des Clones", "La revanche des Sith"),
+                1);
+
+        Question question9 = new Question("OÙ A LIEU LE COMBAT ENTRE YODA ET PALPATINE DANS L'ÉPISODE III ??",
+                Arrays.asList("Au Senat", "A l'academie Jedi", "Dans le bureau de Palpatine"),
+                0);
+
+        Question question10 = new Question("POURQUOI LES EWOKS AIDENT-ILS FINALEMENT LES MEMBRES DE L'ALLIANCE REBELLE ?",
+                Arrays.asList("Parce qu'ils pensent que C3PO est un dieu", "Pour protéger leur territoire", "Parce qu'ils y sont obligés par Luke"),
+                0);
 
 
         return new QuestionBank(Arrays.asList(
@@ -216,7 +223,10 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
                 question4,
                 question5,
                 question6,
-                question7
+                question7,
+                question8,
+                question9,
+                question10
         ));
     }
 

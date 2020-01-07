@@ -125,12 +125,12 @@ public class MemoriesMultiActivity extends AppCompatActivity implements View.OnC
     }
 
     public void memoryBank() {
-        lCard.add(new MemoryCard("Banane", R.drawable.banane));
-        lCard.add(new MemoryCard("Banane", R.drawable.banane));
-        lCard.add(new MemoryCard("Pomme", R.drawable.pomme));
-        lCard.add(new MemoryCard("Pomme", R.drawable.pomme));
-        lCard.add(new MemoryCard("Poire", R.drawable.poire));
-        lCard.add(new MemoryCard("Poire", R.drawable.poire));
+        lCard.add(new MemoryCard("Robot1", R.drawable.robot1));
+        lCard.add(new MemoryCard("Robot1", R.drawable.robot1));
+        lCard.add(new MemoryCard("Robot2", R.drawable.robot2));
+        lCard.add(new MemoryCard("Robot2", R.drawable.robot2));
+        lCard.add(new MemoryCard("Robot3", R.drawable.robot3));
+        lCard.add(new MemoryCard("Robot3", R.drawable.robot3));
         Collections.shuffle(lCard);
     }
 

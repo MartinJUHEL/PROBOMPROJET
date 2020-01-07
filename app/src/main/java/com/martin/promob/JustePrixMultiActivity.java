@@ -60,9 +60,9 @@ public class JustePrixMultiActivity extends AppCompatActivity {
 
         bDimage = new ArrayList<Pair<Integer,Integer>>();
 
-        bDimage.add(new Pair(R.drawable.banane,2));
-        bDimage.add(new Pair(R.drawable.poubelle,15));
-        bDimage.add(new Pair(R.drawable.papier,5));
+        bDimage.add(new Pair(R.drawable.laser,30));
+        bDimage.add(new Pair(R.drawable.mask_vador,100));
+        bDimage.add(new Pair(R.drawable.robot1,45));
 
         int pic = new Random().nextInt(bDimage.size());
 

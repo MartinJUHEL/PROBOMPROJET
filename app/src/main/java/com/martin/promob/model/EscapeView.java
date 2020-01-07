@@ -154,6 +154,7 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
             escapeThread.setRunning(false);
             final Activity act = (Activity) this.getContext();
 
+
             if (TypeActivity.compet) {
 
                 if (!MainActivity.isMulti()) {

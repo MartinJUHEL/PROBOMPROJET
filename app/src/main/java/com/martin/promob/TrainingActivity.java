@@ -27,10 +27,20 @@ public class TrainingActivity extends AppCompatActivity {
         fontbutton = Typeface.createFromAsset(getAssets(), "fonts/SfDistantGalaxy-0l3d.ttf");
 
         quizz=findViewById(R.id.quizzbutton);
+        quizz.getBackground().setAlpha(MainActivity.getOpacity());
+
         pong=findViewById(R.id.pongballbutton);
+        pong.getBackground().setAlpha(MainActivity.getOpacity());
+
         memory=findViewById(R.id.memorybutton);
+        memory.getBackground().setAlpha(MainActivity.getOpacity());
+
         escape=findViewById(R.id.escapebutton);
+        escape.getBackground().setAlpha(MainActivity.getOpacity());
+        
         justePrix=findViewById(R.id.justeprixbutton);
+        justePrix.getBackground().setAlpha(MainActivity.getOpacity());
+
         quizz.setTypeface(fontbutton);
         pong.setTypeface(fontbutton);
         memory.setTypeface(fontbutton);
