@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -38,6 +39,9 @@ public class ScoreActivity extends AppCompatActivity {
 
     private Object currentGame;
 
+    ImageView republic;
+    ImageView empire;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,18 @@ public class ScoreActivity extends AppCompatActivity {
         scorej1View.setText("Score " + MainActivity.getCurrentUser().getFirstname() + " : " + mScoreJ1);
         scorej1TotView.setText("Total " + MainActivity.getCurrentUser().getFirstname() + " : " + mScoreTotJ1);
 
+        republic= findViewById(R.id.imageview_republic);
+        empire =findViewById(R.id.imageview_empire);
+
+        republic.setImageResource(R.drawable.republic);
+        republic.setAdjustViewBounds(true);
+        republic.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        empire.setImageResource(R.drawable.empire);
+        empire.setAdjustViewBounds(true);
+        empire.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+
+
+
 
         //mode solo on cache les scores du joueur 2
         if (!MainActivity.isMulti()) {
@@ -61,6 +77,8 @@ public class ScoreActivity extends AppCompatActivity {
             scorej2View.setVisibility(View.INVISIBLE);
             scorej2TotView.setActivated(false);
             scorej2TotView.setVisibility(View.INVISIBLE);
+            empire.setVisibility(View.INVISIBLE);
+            empire.setActivated(false);
 
             //mode multi
         }else {

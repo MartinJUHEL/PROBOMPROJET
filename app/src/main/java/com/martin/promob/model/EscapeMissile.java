@@ -78,7 +78,7 @@ public class EscapeMissile {
         }
         if (yPos > yMax+50) {
             yPos= -100;
-            xPos=(int)(Math.random()*xMax-100);
+            xPos=(int)(Math.random()*xMax-100)+100;
             angle = 25+(float)Math.random()*125;
            taille();
         }
