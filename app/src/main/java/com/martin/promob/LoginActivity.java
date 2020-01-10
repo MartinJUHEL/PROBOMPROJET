@@ -43,7 +43,6 @@ public class LoginActivity extends Activity {
 
 
         View view = this.getWindow().getDecorView();
-        view.setBackgroundResource(R.drawable.background_login);
 
         if (!MainActivity.isMulti()) {
             editTextj2.setActivated(false);

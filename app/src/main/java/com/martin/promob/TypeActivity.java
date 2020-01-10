@@ -44,7 +44,6 @@ public class TypeActivity extends AppCompatActivity {
         compet = false;
 
         View view = this.getWindow().getDecorView();
-        view.setBackgroundResource(R.drawable.background_type);
 
         textJ1 = findViewById(R.id.textView2);
         textJ1.setText(MainActivity.getCurrentUser().getFirstname());
