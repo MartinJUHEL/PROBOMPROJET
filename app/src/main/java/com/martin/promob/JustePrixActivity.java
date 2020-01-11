@@ -2,6 +2,7 @@ package com.martin.promob;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,10 +26,21 @@ public class JustePrixActivity extends AppCompatActivity {
     private int justeprix;
     private int mScore;
 
+    private MediaPlayer music;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juste_prix);
+
+        LoginActivity.appTheme.stop();
+        LoginActivity.appTheme.release();
+
+        music= MediaPlayer.create(getApplicationContext(), R.raw.cantina);
+        music.setLooping(true);
+        music.start();
 
         txtNumber = null;
         compare = findViewById(R.id.btnCompare);
@@ -41,6 +53,18 @@ public class JustePrixActivity extends AppCompatActivity {
         init();
 
 
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        music.stop();
+        music.release();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        music.start();
     }
 
     public void init() {

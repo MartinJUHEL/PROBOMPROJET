@@ -80,11 +80,17 @@ public class TrainingActivity extends AppCompatActivity {
         startActivity(startJustePrix);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LoginActivity.appTheme.start();
+    }
 
-
-
-
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LoginActivity.appTheme.pause();
+    }
 }
 
 

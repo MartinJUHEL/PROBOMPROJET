@@ -93,6 +93,10 @@ public class ScoreActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        LoginActivity.appTheme.start();
+
+
         scorej1View.setText("Score " + MainActivity.getCurrentUser().getFirstname() + " : " + mScoreJ1);
         scorej1TotView.setText("Total " + MainActivity.getCurrentUser().getFirstname() + " : " + mScoreTotJ1);
 
@@ -110,6 +114,11 @@ public class ScoreActivity extends AppCompatActivity {
             }
         }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LoginActivity.appTheme.pause();
+    }
 
     public static void initialise() {
         mScoreJ1 = 0;

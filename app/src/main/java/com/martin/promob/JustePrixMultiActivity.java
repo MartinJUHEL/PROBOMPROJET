@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -38,10 +39,21 @@ public class JustePrixMultiActivity extends AppCompatActivity {
     private int score1; //score sur 7 points relatifs a l'ecart de valeur entre le juste pric et celui propose
     private int score2;
 
+    private MediaPlayer music;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juste_prix_multi);
+
+        LoginActivity.appTheme.stop();
+        LoginActivity.appTheme.release();
+
+        music= MediaPlayer.create(getApplicationContext(), R.raw.cantina);
+        music.setLooping(true);
+        music.start();
+
 
         txtNumber = null;
         compare = findViewById(R.id.btnCompare);
@@ -54,6 +66,19 @@ public class JustePrixMultiActivity extends AppCompatActivity {
 
         init();
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        music.stop();
+        music.release();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        music.start();
     }
 
     public void initPicture(){

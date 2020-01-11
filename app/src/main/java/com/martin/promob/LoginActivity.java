@@ -3,6 +3,7 @@ package com.martin.promob;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ public class LoginActivity extends Activity {
     Typeface fontbutton;
 
     public static FrameLayout layout;
+    public static MediaPlayer appTheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,10 @@ public class LoginActivity extends Activity {
 
         fontbutton = Typeface.createFromAsset(getAssets(), "fonts/SfDistantGalaxy-0l3d.ttf");
 
+        appTheme = MediaPlayer.create(getApplicationContext(), R.raw.vadertheme);
+        appTheme.setLooping(true);
+
+        appTheme.start();
 
         editTextj1 = findViewById(R.id.edit_user1);
         editTextj2 = findViewById(R.id.edit_user2);
@@ -50,6 +56,21 @@ public class LoginActivity extends Activity {
 
 
         }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        appTheme.start();
+    }
+
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LoginActivity.appTheme.pause();
     }
 
 

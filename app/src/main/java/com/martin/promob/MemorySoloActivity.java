@@ -3,6 +3,7 @@ package com.martin.promob;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -33,12 +34,24 @@ public class MemorySoloActivity extends AppCompatActivity implements View.OnClic
     TextView scoreView;
     boolean debut;
 
+    private MediaPlayer music;
+
+
+
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_memory);
+
+        LoginActivity.appTheme.stop();
+        LoginActivity.appTheme.release();
+
+        music = MediaPlayer.create(getApplicationContext(), R.raw.jeditheme);
+        music.setLooping(true);
+        music.start();
 
         memoryBank();
         nbCardDiscover = 0;
@@ -124,6 +137,20 @@ public class MemorySoloActivity extends AppCompatActivity implements View.OnClic
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        music.start();
+    }
+
+    // This method executes when the player quits the game
+    @Override
+    protected void onPause() {
+        super.onPause();
+        music.stop();
+        music.release();
     }
 
 

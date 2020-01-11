@@ -1,6 +1,7 @@
 package com.martin.promob;
 
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -35,12 +36,22 @@ public class MemoriesMultiActivity extends AppCompatActivity implements View.OnC
     TextView scoreJRouge;
     TextView scoreJBleu;
 
+    private MediaPlayer music;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_memory);
+
+        LoginActivity.appTheme.stop();
+        LoginActivity.appTheme.release();
+
+        music = MediaPlayer.create(getApplicationContext(), R.raw.jeditheme);
+        music.setLooping(true);
+        music.start();
 
         memoryBank();
         nbCardDiscover = 0;
@@ -60,7 +71,7 @@ public class MemoriesMultiActivity extends AppCompatActivity implements View.OnC
         jRouge = MainActivity.getCurrentUser2().getFirstname();
 
         imJBleu.setImageResource(R.drawable.noir);
-        imJRouge.setImageResource(R.drawable.rouge);
+        imJRouge.setImageResource(R.drawable.empire);
 
         scoreJBleu.setText("Score " + MainActivity.getCurrentUser().getFirstname() + " : 0");
         scoreJRouge.setText("Score " + MainActivity.getCurrentUser2().getFirstname() + " : 0");
@@ -118,6 +129,19 @@ public class MemoriesMultiActivity extends AppCompatActivity implements View.OnC
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        music.start();
+    }
+
+    // This method executes when the player quits the game
+    @Override
+    protected void onPause() {
+        super.onPause();
+        music.stop();
+        music.release();
+    }
 
     @Override
     public void onClick(View v) {
@@ -175,13 +199,13 @@ public class MemoriesMultiActivity extends AppCompatActivity implements View.OnC
     public void changementJoueur() {
         if (joueurCourant == jRouge) {
             joueurCourant = jBleu;
-            imJBleu.setImageResource(R.drawable.bleu);
+            imJBleu.setImageResource(R.drawable.republic);
             imJRouge.setImageResource(R.drawable.noir);
 
         } else {
             joueurCourant = jRouge;
             imJBleu.setImageResource(R.drawable.noir);
-            imJRouge.setImageResource(R.drawable.rouge);
+            imJRouge.setImageResource(R.drawable.empire);
         }
     }
 
