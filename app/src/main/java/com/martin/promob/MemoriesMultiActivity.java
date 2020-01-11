@@ -70,14 +70,21 @@ public class MemoriesMultiActivity extends AppCompatActivity implements View.OnC
         jBleu = MainActivity.getCurrentUser().getFirstname();
         jRouge = MainActivity.getCurrentUser2().getFirstname();
 
-        imJBleu.setImageResource(R.drawable.noir);
+        imJBleu.setImageResource(R.drawable.republic);
         imJRouge.setImageResource(R.drawable.empire);
 
         scoreJBleu.setText("Score " + MainActivity.getCurrentUser().getFirstname() + " : 0");
         scoreJRouge.setText("Score " + MainActivity.getCurrentUser2().getFirstname() + " : 0");
 
+        int first = (int) Math.random();
+        if (first == 1) {
+            joueurCourant = jBleu;
+            imJRouge.setVisibility(View.INVISIBLE);
 
-        joueurCourant = jRouge;
+        } else {
+            joueurCourant = jRouge;
+            imJBleu.setVisibility(View.INVISIBLE);
+        }
 
 
         TextView titre = findViewById(R.id.memory_text_view);
@@ -199,13 +206,13 @@ public class MemoriesMultiActivity extends AppCompatActivity implements View.OnC
     public void changementJoueur() {
         if (joueurCourant == jRouge) {
             joueurCourant = jBleu;
-            imJBleu.setImageResource(R.drawable.republic);
-            imJRouge.setImageResource(R.drawable.noir);
+            imJBleu.setVisibility(View.VISIBLE);
+            imJRouge.setVisibility(View.INVISIBLE);
 
         } else {
             joueurCourant = jRouge;
-            imJBleu.setImageResource(R.drawable.noir);
-            imJRouge.setImageResource(R.drawable.empire);
+            imJBleu.setVisibility(View.INVISIBLE);
+            imJRouge.setVisibility(View.VISIBLE);
         }
     }
 

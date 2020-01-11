@@ -3,6 +3,7 @@ package com.martin.promob;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -43,11 +44,15 @@ public class ScoreActivity extends AppCompatActivity {
     ImageView republic;
     ImageView empire;
 
+    Typeface fontbutton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+
+        fontbutton=Typeface.createFromAsset(getAssets(), "fonts/SfDistantGalaxy-0l3d.ttf");
 
         scorej1View = findViewById(R.id.textView_scoretemp);
         scorej1TotView = findViewById(R.id.textView_scoretotal);
@@ -55,6 +60,16 @@ public class ScoreActivity extends AppCompatActivity {
         scorej2View = findViewById(R.id.textView_scoretemp2);
         scorej2TotView = findViewById(R.id.textView_scoretotal2);
         showPlayer = findViewById(R.id.textview_showplayer);
+
+        scorej1TotView.setTypeface(fontbutton);
+        scorej1View.setTypeface(fontbutton);
+        scorej2TotView.setTypeface(fontbutton);
+        scorej2View.setTypeface(fontbutton);
+
+        next=findViewById(R.id.button_next);
+        next.getBackground().setAlpha(MainActivity.getOpacity());
+        next.setTypeface(fontbutton);
+
 
         scorej1View.setText("Score " + MainActivity.getCurrentUser().getFirstname() + " : " + mScoreJ1);
         scorej1TotView.setText("Total " + MainActivity.getCurrentUser().getFirstname() + " : " + mScoreTotJ1);

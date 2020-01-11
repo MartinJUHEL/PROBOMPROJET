@@ -28,6 +28,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="48dp"
+        android:alpha="70"
         android:onClick="next"
         android:text="@string/button_next"
         android:textColor="#FFD100"
@@ -35,8 +36,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.212" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RelativeLayout
         android:id="@+id/RelativeLayout"
