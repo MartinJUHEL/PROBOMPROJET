@@ -83,6 +83,7 @@ public class TrainingActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
         LoginActivity.appTheme.start();
     }
 

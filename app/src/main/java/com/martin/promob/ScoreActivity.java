@@ -3,6 +3,7 @@ package com.martin.promob;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -93,7 +94,8 @@ public class ScoreActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        LoginActivity.appTheme = MediaPlayer.create(getApplicationContext(), R.raw.vadertheme);
+        LoginActivity.appTheme.setLooping(true);
         LoginActivity.appTheme.start();
 
 

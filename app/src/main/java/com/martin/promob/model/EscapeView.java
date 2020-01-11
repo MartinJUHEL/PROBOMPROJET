@@ -2,6 +2,8 @@ package com.martin.promob.model;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -15,6 +17,8 @@ import android.media.SoundPool;
 import android.os.Build;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.martin.promob.MainActivity;
 import com.martin.promob.R;
@@ -171,7 +175,20 @@ public class EscapeView extends SurfaceView implements SurfaceHolder.Callback {
                 }
                 act.finish();
             } else {
-                act.finish();
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                    builder.setTitle("Bien joue!")
+                            .setMessage("Ton score est de " + score)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    act.finish();
+                                }
+                            })
+                            .setCancelable(false)
+                            .create()
+                            .show();
+
             }
         }
     }

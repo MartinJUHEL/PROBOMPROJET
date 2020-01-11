@@ -12,6 +12,8 @@ import android.widget.FrameLayout;
 
 import com.martin.promob.model.User;
 
+import java.io.IOException;
+
 public class LoginActivity extends Activity {
 
 
@@ -32,10 +34,7 @@ public class LoginActivity extends Activity {
 
         fontbutton = Typeface.createFromAsset(getAssets(), "fonts/SfDistantGalaxy-0l3d.ttf");
 
-        appTheme = MediaPlayer.create(getApplicationContext(), R.raw.vadertheme);
-        appTheme.setLooping(true);
 
-        appTheme.start();
 
         editTextj1 = findViewById(R.id.edit_user1);
         editTextj2 = findViewById(R.id.edit_user2);
@@ -62,6 +61,8 @@ public class LoginActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        appTheme = MediaPlayer.create(getApplicationContext(), R.raw.vadertheme);
+        appTheme.setLooping(true);
         appTheme.start();
     }
 
@@ -74,12 +75,9 @@ public class LoginActivity extends Activity {
     }
 
 
+
     public void sendMessage(View view) {
         Intent intent = new Intent(this, TypeActivity.class);
-
-
-        //editTextj2.setActivated(false);
-        //editTextj2.setVisibility(View.INVISIBLE);
 
         String user1 = editTextj1.getText().toString();
 

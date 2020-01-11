@@ -13,12 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".JustePrixMultiActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".JustePrixActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".ScoreActivity"
             android:screenOrientation="portrait" />
@@ -56,19 +51,32 @@
         </activity>
         <activity
             android:name=".MemoriesMultiActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".MemorySoloActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".EscapeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".QuizzActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".PongActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".JustePrixMultiActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".JustePrixActivity"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>
