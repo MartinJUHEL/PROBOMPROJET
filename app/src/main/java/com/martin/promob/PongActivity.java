@@ -28,7 +28,7 @@ public class PongActivity extends AppCompatActivity {
 
         music = MediaPlayer.create(getApplicationContext(), R.raw.siththeme);
         music.setLooping(true);
-        music.setVolume(80,80);
+        music.setVolume(50,50);
         music.start();
 
         // Get a Display object to access screen details
