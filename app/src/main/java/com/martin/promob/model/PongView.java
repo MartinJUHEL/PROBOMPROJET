@@ -121,9 +121,9 @@ public class PongView extends SurfaceView implements Runnable {
 
 
             // Load our fx in memory ready for use
-            beep1ID = sp.load(this.getContext(), R.raw.when, 0);
+            beep1ID = sp.load(this.getContext(), R.raw.blaster, 0);
             beep2ID = sp.load(this.getContext(), R.raw.lazer, 0);
-            beep3ID = sp.load(this.getContext(), R.raw.looser, 0);
+            beep3ID = sp.load(this.getContext(), R.raw.r22, 0);
 
 
 
@@ -213,12 +213,13 @@ public class PongView extends SurfaceView implements Runnable {
             mBall.reverseYVelocity();
             mBall.clearObstacleY(mScreenY - 8);
 
+            mBall.initVelocity();
             // Lose a life
             mLives--;
             mBall.reset(mScreenX, mScreenY/2);
             mPaused = true;
 
-            sp.play(beep3ID, 1, 1, 0, 0, 1);
+            sp.play(beep3ID, 2, 2, 0, 0, 1);
 
             if (mLives == 0) {
                 mPaused = true;
