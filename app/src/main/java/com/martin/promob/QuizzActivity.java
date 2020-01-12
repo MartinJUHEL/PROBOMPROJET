@@ -2,6 +2,7 @@ package com.martin.promob;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -41,10 +42,20 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
 
     private boolean mEnableTouchEvents;
 
+    private MediaPlayer music;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizz);
+
+        LoginActivity.appTheme.stop();
+        LoginActivity.appTheme.release();
+
+        music = MediaPlayer.create(getApplicationContext(), R.raw.jeditheme);
+        music.setLooping(true);
+        music.start();
 
         mNumberOfQuestionsInitial = 5;
         mNumberOfQuestions = mNumberOfQuestionsInitial;
@@ -54,6 +65,7 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
         answer1 = (Button) findViewById(R.id.activity_game_answer1_btn);
         answer2 = (Button) findViewById(R.id.activity_game_answer2_btn);
         answer3 = (Button) findViewById(R.id.activity_game_answer3_btn);
+
 
         answer1.setOnClickListener(this);
         answer2.setOnClickListener(this);
@@ -84,6 +96,20 @@ public class QuizzActivity extends AppCompatActivity implements View.OnClickList
         mEnableTouchEvents = true;
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        music.start();
+    }
+
+    // This method executes when the player quits the game
+    @Override
+    protected void onPause() {
+        super.onPause();
+        music.stop();
+        music.release();
     }
 
     @Override

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/deathstar"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -22,7 +23,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="30dp"
-            android:layout_marginBottom="30dp" />
+            android:layout_marginBottom="30dp"
+            android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/scorej1"
@@ -31,7 +33,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="30dp"
-            android:layout_marginBottom="30dp" />
+            android:layout_marginBottom="30dp"
+            android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/memory_text_view"
@@ -45,6 +48,7 @@
             android:layout_marginTop="88dp"
             android:layout_marginEnd="140dp"
             android:text="@string/memory_name"
+            android:textColor="#FFFFFF"
             tools:text="@string/memory_name" />
 
         <ImageView
@@ -55,7 +59,7 @@
             android:layout_alignEnd="@id/scorej1"
             android:layout_marginStart="46dp"
             android:layout_marginBottom="30dp"
-            app:srcCompat="@drawable/bleu" />
+            app:srcCompat="@drawable/republic" />
 
         <ImageView
             android:id="@+id/imagerouge"

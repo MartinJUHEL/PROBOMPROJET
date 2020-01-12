@@ -16,9 +16,13 @@ public class PongBall {
     //hauteur de la balle
     private float mBallHeight;
 
+    private int screenX;
+    private int screenY;
 
     public PongBall(int screenX, int screenY){
 
+        this.screenX=screenX;
+        this.screenY=screenY;
         // creer une balle dont la taille est relative a la taille de l'ecran
         // la balle ici represente 1/100 de la taille de l'ecran
         mBallWidth = screenX / 40;
@@ -72,6 +76,11 @@ public class PongBall {
     public void increaseVelocity(){
         mXVelocity = mXVelocity + mXVelocity / 4;
         mYVelocity = mYVelocity + mYVelocity /4;
+    }
+
+    public void initVelocity(){
+        mYVelocity = screenY / 4;
+        mXVelocity = mYVelocity;
     }
 
 

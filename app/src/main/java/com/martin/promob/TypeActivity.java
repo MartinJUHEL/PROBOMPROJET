@@ -68,6 +68,19 @@ public class TypeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LoginActivity.appTheme.pause();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LoginActivity.appTheme.start();
+    }
+
     public void competition(View view) {
 
         compet = true;

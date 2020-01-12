@@ -3,6 +3,7 @@ package com.martin.promob;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,8 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 
 import com.martin.promob.model.User;
+
+import java.io.IOException;
 
 public class LoginActivity extends Activity {
 
@@ -22,6 +25,7 @@ public class LoginActivity extends Activity {
     Typeface fontbutton;
 
     public static FrameLayout layout;
+    public static MediaPlayer appTheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,7 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
 
         fontbutton = Typeface.createFromAsset(getAssets(), "fonts/SfDistantGalaxy-0l3d.ttf");
+
 
 
         editTextj1 = findViewById(R.id.edit_user1);
@@ -50,15 +55,29 @@ public class LoginActivity extends Activity {
 
 
         }
+
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        appTheme = MediaPlayer.create(getApplicationContext(), R.raw.vadertheme);
+        appTheme.setLooping(true);
+        appTheme.start();
+    }
+
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LoginActivity.appTheme.pause();
+    }
+
 
 
     public void sendMessage(View view) {
         Intent intent = new Intent(this, TypeActivity.class);
-
-
-        //editTextj2.setActivated(false);
-        //editTextj2.setVisibility(View.INVISIBLE);
 
         String user1 = editTextj1.getText().toString();
 

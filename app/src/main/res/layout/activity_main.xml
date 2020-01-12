@@ -6,24 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/starbackground"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <RelativeLayout
         android:id="@+id/toHide"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@mipmap/starbackground">
 
         <Button
             android:id="@+id/buttonclassement2"
-            android:layout_width="100dp"
+            android:layout_width="115dp"
             android:layout_height="100dp"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="24dp"
             android:layout_marginBottom="24dp"
             android:onClick="showClassement"
+            android:text="@string/button_classement"
             android:textColor="#FFD100"
             android:textSize="@dimen/titre"
-            android:text="@string/button_classement"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -33,12 +35,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:textColor="#FFD100"
-            android:textSize="@dimen/titre"
-            android:layout_marginStart="39dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
             android:onClick="soloRanking"
-            android:text="@string/button_solo_classement" />
+            android:text="@string/button_solo_classement"
+            android:textColor="#FFD100"
+            android:textSize="@dimen/titre" />
 
         <Button
             android:id="@+id/multiclassement"
@@ -46,14 +48,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:textColor="#FFD100"
-            android:textSize="@dimen/titre"
-            android:layout_marginStart="26dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="49dp"
+            android:layout_marginEnd="15dp"
             android:layout_toEndOf="@+id/soloclassement"
             android:onClick="multiRanking"
-            android:text="@string/button_multi_classement" />
+            android:text="@string/button_multi_classement"
+            android:textColor="#FFD100"
+            android:textSize="@dimen/titre" />
 
         <ScrollView
             android:id="@+id/scroll_view_classement"
@@ -72,19 +74,18 @@
                 <TextView
                     android:id="@+id/playerclassement_textview"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
-                    android:textSize="@dimen/titre"
-                    android:layout_height="wrap_content" />
+                    android:textSize="@dimen/titre" />
             </LinearLayout>
         </ScrollView>
 
     </RelativeLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@mipmap/starbackground"
         tools:context=".MainActivity">
 
         <TextView
@@ -101,7 +102,7 @@
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="100dp"
             android:layout_marginEnd="16dp"
             android:background="#ffffff"
             android:onClick="onePlayer"
@@ -134,7 +135,7 @@
 
         <Button
             android:id="@+id/buttonclassement"
-            android:layout_width="100dp"
+            android:layout_width="115dp"
             android:layout_height="100dp"
             android:layout_marginStart="24dp"
             android:layout_marginBottom="24dp"

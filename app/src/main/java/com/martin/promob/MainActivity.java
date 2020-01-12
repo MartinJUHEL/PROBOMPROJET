@@ -1,17 +1,19 @@
 package com.martin.promob;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.martin.promob.model.User;
 
@@ -20,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     private Button classementbutton;
     private ClassementSlider classementSlider;
@@ -42,6 +44,8 @@ public class MainActivity extends Activity {
 
     //Pour la police star wars
     Typeface fontbutton;
+
+    MediaPlayer mediaPlayer;
 
 
     @Override
@@ -68,7 +72,7 @@ public class MainActivity extends Activity {
         classementbutton.getBackground().setAlpha(opacity);
         classementbutton.setTypeface(fontbutton);
 
-        Button classementbutton2=findViewById(R.id.buttonclassement2);
+        Button classementbutton2 = findViewById(R.id.buttonclassement2);
         classementbutton2.getBackground().setAlpha(opacity);
         classementbutton2.setTypeface(fontbutton);
 
@@ -101,7 +105,29 @@ public class MainActivity extends Activity {
         scoremulti.getBackground().setAlpha(opacity);
         scoremulti.setTypeface(fontbutton);
 
+
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mediaPlayer.stop();
+        mediaPlayer.release();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(LoginActivity.appTheme!=null) {
+            LoginActivity.appTheme.stop();
+            LoginActivity.appTheme.release();
+        }
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.theme);
+        mediaPlayer.setLooping(true);
+         mediaPlayer.start();
+    }
+
 
     public void onePlayer(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
