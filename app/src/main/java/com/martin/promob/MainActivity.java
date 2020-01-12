@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -166,11 +167,14 @@ public class MainActivity extends AppCompatActivity {
     public void soloRanking(View view) {
         classementTextView.setText(showSoloScore());
         classementTextView.setTypeface(fontbutton);
+        classementTextView.setGravity(Gravity.CENTER_VERTICAL);
     }
 
     public void multiRanking(View view) {
         classementTextView.setText(showMultiScore());
         classementTextView.setTypeface(fontbutton);
+        classementTextView.setGravity(Gravity.CENTER_VERTICAL);
+
     }
 
     public void showClassement(View view) {
