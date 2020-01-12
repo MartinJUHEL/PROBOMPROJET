@@ -133,7 +133,7 @@ public class JustePrixMultiActivity extends AppCompatActivity {
 
         }else{
             number2 = nombreRecup;
-            history.append(nombreRecup + "\r\n");
+            history2.append(nombreRecup + "\r\n");
             txtNumber.setText("");
         }
 
