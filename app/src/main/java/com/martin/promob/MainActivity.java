@@ -6,7 +6,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -17,6 +16,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.martin.promob.model.User;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -103,8 +110,16 @@ public class MainActivity extends AppCompatActivity {
 
         Button scoremulti = findViewById(R.id.multiclassement);
         scoremulti.getBackground().setAlpha(opacity);
+
         scoremulti.setTypeface(fontbutton);
 
+        try {
+            loadScores();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -117,15 +132,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        saveScores();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
-        if(LoginActivity.appTheme!=null) {
+        if (LoginActivity.appTheme != null) {
             LoginActivity.appTheme.stop();
             LoginActivity.appTheme.release();
         }
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.theme);
         mediaPlayer.setLooping(true);
-         mediaPlayer.start();
+        mediaPlayer.start();
     }
 
 
@@ -144,10 +165,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void soloRanking(View view) {
         classementTextView.setText(showSoloScore());
+        classementTextView.setTypeface(fontbutton);
     }
 
     public void multiRanking(View view) {
         classementTextView.setText(showMultiScore());
+        classementTextView.setTypeface(fontbutton);
     }
 
     public void showClassement(View view) {
@@ -189,10 +212,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public static void addSoloScore(int score, User user) {
+    public static void addSoloScore(int score, String user) {
         boolean insere = false;
-        Pair p = new Pair(score, user.getFirstname());
-        user.addScore(score);
+        Pair p = new Pair(score, user);
         for (int i = 0; i < soloScores.size(); i++) {
             if ((score >= soloScores.get(i).first) && !insere) {
                 soloScores.add(i, p);
@@ -212,10 +234,9 @@ public class MainActivity extends AppCompatActivity {
         return s;
     }
 
-    public static void addMultiScore(int score, User user) {
+    public static void addMultiScore(int score, String user) {
         boolean insere = false;
-        Pair p = new Pair(score, user.getFirstname());
-        user.addScore(score);
+        Pair p = new Pair(score, user);
         for (int i = 0; i < multiScores.size(); i++) {
             if ((score >= multiScores.get(i).first) && !insere) {
                 multiScores.add(i, p);
@@ -237,6 +258,70 @@ public class MainActivity extends AppCompatActivity {
 
     public static int getOpacity() {
         return opacity;
+    }
+
+    public void loadScores() throws IOException, JSONException {
+        String scoresJson = null;
+
+        FileInputStream file = openFileInput("score.json");
+        StringBuilder stringb = new StringBuilder();
+        int content;
+        while ((content = file.read()) != -1) {
+            scoresJson = String.valueOf(stringb.append((char) content));
+        }
+        JSONObject scores = new JSONObject(scoresJson);
+        JSONArray scoresMultiArray = scores.getJSONArray("score_multi");
+        JSONArray scoresSoloArray = scores.getJSONArray("score_solo");
+
+        for (int i = 0; i < scoresMultiArray.length(); i++) {
+           JSONObject current=scoresMultiArray.getJSONObject(i);
+            addMultiScore(current.getInt("score"),current.getString("user"));
+        }
+        for (int i = 0; i < scoresSoloArray.length(); i++) {
+            JSONObject current=scoresSoloArray.getJSONObject(i);
+            addSoloScore(current.getInt("score"),current.getString("user"));
+        }
+
+
+    }
+
+
+    private void saveScores() {
+        try {
+            FileOutputStream file = openFileOutput("score.json", MODE_PRIVATE);
+            JSONArray allScoreMulti = new JSONArray();
+            JSONArray allScoreSolo = new JSONArray();
+
+
+            for (Pair p : multiScores) {
+                JSONObject score = new JSONObject();
+                score.put("score", p.first);
+                score.put("user", p.second);
+                allScoreMulti.put(score);
+
+            }
+            for (Pair p : soloScores) {
+                JSONObject score = new JSONObject();
+                score.put("score", p.first);
+                score.put("user", p.second);
+                allScoreSolo.put(score);
+            }
+            JSONObject scores = new JSONObject();
+            scores.put("score_multi", allScoreMulti);
+            scores.put("score_solo", allScoreSolo);
+            String save = scores.toString();
+            file.write(save.getBytes());
+            file.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 }
