@@ -100,7 +100,7 @@ public class PongView extends SurfaceView implements Runnable {
         // Create a mBall
         mBall = new PongBall(mScreenX, mScreenY);
 
-        bgImg = selectBckground(this.getContext(),bgImg);
+        bgImg =  BitmapFactory.decodeResource(context.getResources(), R.drawable.stormtroopers);
 
         //creer des sons en fonction de la version d'android
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
