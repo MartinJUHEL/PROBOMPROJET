@@ -79,7 +79,7 @@ public class EscapeBall extends Activity implements SensorEventListener2 {
         sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
         float frameTime = 0.666f;
         xVel += (xAccel * frameTime);
-        yVel += (yAccel * frameTime);
+        yVel += (yAccel * frameTime/3);
 
 
 

@@ -300,10 +300,10 @@ public class ScoreActivity extends AppCompatActivity {
 
     public void endgame() {
         if (MainActivity.isMulti()) {
-            MainActivity.addMultiScore(mScoreTotJ1, MainActivity.getCurrentUser());
-            MainActivity.addMultiScore(mScoreTotJ2, MainActivity.getCurrentUser2());
+            MainActivity.addMultiScore(mScoreTotJ1, MainActivity.getCurrentUser().getFirstname());
+            MainActivity.addMultiScore(mScoreTotJ2, MainActivity.getCurrentUser2().getFirstname());
         } else {
-            MainActivity.addSoloScore(mScoreTotJ1, MainActivity.getCurrentUser());
+            MainActivity.addSoloScore(mScoreTotJ1, MainActivity.getCurrentUser().getFirstname());
         }
     }
 }

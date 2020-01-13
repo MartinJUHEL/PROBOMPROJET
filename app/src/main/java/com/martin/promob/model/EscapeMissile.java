@@ -57,7 +57,7 @@ public class EscapeMissile {
     }
 
     private void taille(){
-        int taille=(int)(100+Math.random()*350);
+        int taille=(int)(200+Math.random()*350);
         missileW=taille;
         missileH=taille;
         img = Bitmap.createScaledBitmap(missileSrc, missileW, missileH, true);
@@ -78,7 +78,7 @@ public class EscapeMissile {
         }
         if (yPos > yMax+50) {
             yPos= -100;
-            xPos=(int)(Math.random()*xMax-100)+100;
+            xPos=(int)(Math.random()*xMax-250)+100;
             angle = 25+(float)Math.random()*125;
            taille();
         }
